@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Début : default colors -->
+    <color name="colorPrimary_default">#3F51B5</color>
+    <color name="colorPrimaryDark_default">#303F9F</color>
+    <color name="colorAccent_default">#FF4081</color>
+    <!-- Fin : default colors     -->
+
+    <!-- specifics colors for "beautiful login" -->
+    <color name="colorPrimary">#795548</color>
+    <color name="colorPrimaryDark">#5d4037</color>
+    <color name="colorAccent">#00b8d4</color>
+
+    <!-- Start of : Another Colors from Another tuto to do "the waiting process" -->
+    <color name="primary">#E43F3F</color>
+    <color name="primary_dark">#E12929</color>
+    <color name="primary_darker">#CC1D1D</color>
+    <color name="accent">#FFFFFF</color>
+
+    <color name="black">#000000</color>
+    <color name="jet">#222222</color>
+    <color name="oil">#333333</color>
+    <color name="monsoon">#777777</color>
+    <color name="jumbo">#888888</color>
+    <color name="aluminum">#999999</color>
+    <color name="base">#AAAAAA</color>
+    <color name="iron">#CCCCCC</color>
+    <color name="white">#FFFFFF</color>
+    <!-- End Of : Another Colors from Another tuto to do "the waiting process" -->
+
+    <!-- End of specifics colors for "beautiful login"-->
+
+    <!-- Début : Strings related for "android-sliding-menu-using-navigation-drawer" -->
+    <color name="colorPrimary_NavigationDrawer">#d32f2f</color>
+    <color name="colorPrimaryDark_NavigationDrawer">#c72c2c</color>
+    <color name="colorAccent_NavigationDrawer">#FFFFFF</color>
+    <!-- Fin   : Strings related for "android-sliding-menu-using-navigation-drawer" -->
+
+    <!-- Début ; Another Colors for Drawer  => tuto : https://v4all123.blogspot.com/2016/02/navigationview-example-in-android.html -->
+    <color name="one">#FFCDD2</color>
+    <color name="two">#E1BEE7</color>
+    <color name="three">#D1C4E9</color>
+    <color name="four">#BBDEFB</color>
+    <color name="five">#FFECB3</color>
+    <array name="colors">
+        <item>@color/one</item>
+        <item>@color/two</item>
+        <item>@color/three</item>
+        <item>@color/four</item>
+        <item>@color/five</item>
+    </array>
+    <!-- Fin : Another Colors for Drawer-->
+
+    <!-- Début : Colors for List View of Users Management -->
+    <color name="emailUserManage">#666666</color>
+    <color name="phoneNumberUserManage">#666666</color>
+    <color name="mssRoleUserManage">#888888</color>
+    <color name="list_divider">#d9d9d9</color>
+    <color name="list_row_start_color">#ffffff</color>
+    <color name="list_row_end_color">#ffffff</color>
+    <color name="list_row_hover_start_color">#ebeef0</color>
+    <color name="list_row_hover_end_color">#ebeef0</color>
+    <!-- Fin : Colors for List View of Users Management -->
+
+    <!-- Other Colors by me-->
+    <color name="green">#7FFF00</color>
+    <color name="orange">#FFA500</color>
+    <color name="red">#FF0000</color>
+    <color name="blue_grey">#455A64</color>
+    <!-- Fin Other Colors by me-->
+
+</resources>

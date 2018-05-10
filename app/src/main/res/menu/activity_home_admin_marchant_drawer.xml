@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home_mss_admin"
+            android:icon="@drawable/ic_home_black_24dp_v21"
+            android:title="@string/nav_home" />
+        <!--  <item
+               android:id="@+id/nav_camera"
+               android:icon="@drawable/ic_menu_camera"
+               android:title="Import" />
+           <item
+               android:id="@+id/nav_gallery"
+               android:icon="@drawable/ic_menu_gallery"
+               android:title="Gallery" />
+           <item
+               android:id="@+id/nav_slideshow"
+               android:icon="@drawable/ic_menu_slideshow"
+               android:title="Slideshow" /> -->
+        <item
+            android:id="@+id/nav_notifications_mss_admin"
+            android:icon="@drawable/ic_notifications_black_24dp_v21"
+            android:title="@string/nav_notifications" />
+        <!--  <item
+               android:id="@+id/nav_settings"
+               android:icon="@drawable/ic_settings_black_24dp"
+               android:title="@string/nav_settings" /> -->
+        <item
+            android:id="@+id/nav_transactions_mss_admin"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/transactions" />
+
+        <item
+            android:id="@+id/nav_profile_user_mss_admin"
+            android:icon="@drawable/ic_account_circle_black_24dp_v21"
+            android:title="@string/profile" />
+
+        <item
+            android:id="@+id/nav_manage_mss_admin"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/users_gst" />
+
+    </group>
+
+    <item android:title="@string/other">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_settings_mss_admin"
+                    android:icon="@drawable/ic_settings_applications_black_24dp_v21"
+                    android:title="@string/nav_settings" />
+            </group>
+        </menu>
+    </item>
+
+  <!--  <item android:title="@string/communicate">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_share_mss_admin"
+                    android:icon="@drawable/ic_menu_share"
+                    android:title="@string/share" />
+                <item
+                    android:id="@+id/nav_send_mss_admin"
+                    android:icon="@drawable/ic_menu_send"
+                    android:title="@string/send" />
+            </group>
+        </menu>
+    </item> -->
+
+    <item android:title="@string/exit">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_logout_mss_admin"
+                    android:icon="@drawable/ic_exit_to_app_black_24dp_v21"
+                    android:title="@string/logout" />
+            </group>
+        </menu>
+    </item>
+
+
+</menu>

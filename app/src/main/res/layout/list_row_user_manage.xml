@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_row_user_manage_selector"
+    android:padding="8dp" >
+
+    <!-- Image Profile -->
+    <ImageView
+        android:id="@+id/imgViewUsr_Manager"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginEnd="8dp" />
+
+    <!-- Full Name User -->
+    <TextView
+        android:id="@+id/fullName_UsrManage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imgViewUsr_Manager"
+        android:layout_toEndOf="@+id/imgViewUsr_Manager"
+        android:textSize="@dimen/fullNameUserManage"
+        android:textStyle="bold" />
+
+    <!-- User Name  -->
+    <TextView
+        android:id="@+id/userName_UsrManage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fullName_UsrManage"
+        android:layout_marginTop="1dip"
+        android:layout_toEndOf="@+id/imgViewUsr_Manager"
+        android:textSize="@dimen/userNameUserManage" />
+
+    <!-- Email User -->
+    <TextView
+        android:id="@+id/email_UsrManage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userName_UsrManage"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/imgViewUsr_Manager"
+        android:textColor="@color/emailUserManage"
+        android:textSize="@dimen/emailUserManage" />
+
+    <!-- Phone Number User -->
+    <TextView
+        android:id="@+id/phoneNumber_UsrManage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/email_UsrManage"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/imgViewUsr_Manager"
+        android:textColor="@color/phoneNumberUserManage"
+        android:textSize="@dimen/phoneNumberUserManage" />
+
+    <!-- Role User -->
+    <TextView
+    android:id="@+id/mssRole_UsrManage"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentEnd="true"
+    android:textColor="@color/mssRoleUserManage"
+    android:textSize="@dimen/mssRoleUserManage" />
+
+</RelativeLayout>

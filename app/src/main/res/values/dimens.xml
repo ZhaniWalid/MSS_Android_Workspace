@@ -1,0 +1,23 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Début : Strings related for "android-sliding-menu-using-navigation-drawer" -->
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">8dp</dimen> <!-- 16dp ou 8dp-->
+    <dimen name="nav_header_height">176dp</dimen> <!-- 160dp ou 176dp -->
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="profile_width">75dp</dimen>
+    <dimen name="profile_height">75dp</dimen>
+    <!-- Fin   : Strings related for "android-sliding-menu-using-navigation-drawer" -->
+
+    <!-- Début : Strings Dimens Related for List View of Users Management -->
+    <dimen name="fullNameUserManage">17sp</dimen>
+    <dimen name="userNameUserManage">15sp</dimen>
+    <dimen name="emailUserManage">13sp</dimen>
+    <dimen name="phoneNumberUserManage">12.5sp</dimen>
+    <dimen name="mssRoleUserManage">12sp</dimen>
+    <!-- Fin : Strings Dimens Related for List View of Users Management -->
+</resources>

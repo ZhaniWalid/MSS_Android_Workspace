@@ -1,0 +1,177 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.android_client.ms_solutions.mss.mss_androidapplication_client.Fragments.SettingsScrollViewFragment">
+
+ <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="5dp"
+            android:text="@string/change_password_settings"
+            android:textSize="20sp"
+            android:textColor="@color/blue_grey"
+            android:textStyle="bold"
+            android:drawableRight="@drawable/ic_menu_manage"
+            android:drawablePadding="8dp" />
+
+
+      <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:passwordToggleTint="@color/colorAccent"
+        app:passwordToggleEnabled="true">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/editTxtOldPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_lock_black_24dp"
+            android:hint="@string/old_password_here"
+            android:inputType="textPassword"
+            android:enabled="false"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            app:passwordToggleTint="@color/colorAccent"
+            app:passwordToggleEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/editTxtNewPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_lock_black_24dp"
+                android:hint="@string/new_password_here"
+                android:inputType="textPassword"
+                android:enabled="false"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:passwordToggleTint="@color/colorAccent"
+            app:passwordToggleEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/editTxtConfirmNewPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_lock_black_24dp"
+                android:hint="@string/confirm_new_password_here"
+                android:inputType="textPassword"
+                android:enabled="false"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_editChangePassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="@dimen/fab_margin"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="292dp"
+                android:src="@drawable/ic_mode_edit_black_24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.841"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_SaveChangePassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="@dimen/fab_margin"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.185"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_save_black_24dp" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="5dp"
+            android:text="@string/email_address_settings"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimary_NavigationDrawer"
+            android:background="@color/iron"
+            android:textAlignment="viewStart"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="5dp"
+            android:text="@string/email_address_settings"
+            android:textSize="30sp"
+            android:textColor="@color/colorPrimary_NavigationDrawer"
+            android:background="@color/iron"
+            android:textAlignment="viewStart"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="5dp"
+            android:text="@string/email_address_settings"
+            android:textSize="35sp"
+            android:textColor="@color/colorPrimary_NavigationDrawer"
+            android:background="@color/iron"
+            android:textAlignment="viewStart"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="5dp"
+            android:text="@string/email_address_settings"
+            android:textSize="55sp"
+            android:textColor="@color/colorPrimary_NavigationDrawer"
+            android:background="@color/iron"
+            android:textAlignment="viewStart"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+ </ScrollView>
+
+</FrameLayout>
