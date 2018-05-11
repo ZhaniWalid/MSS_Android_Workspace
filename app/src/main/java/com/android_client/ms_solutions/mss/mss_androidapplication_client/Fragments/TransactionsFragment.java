@@ -27,6 +27,7 @@ import com.android_client.ms_solutions.mss.mss_androidapplication_client.Adapter
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Adapters.GeneralTransactionsRecyclerAdpater;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Adapters.ListViewTransactionsDataAdapter;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Filters.TransactionsFilters.FilterGeneralTransactionsRecyclerAdpater;
+import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.gw_trnsct_ExtendedBindingModel;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.gw_trnsct_GeneralBindingModel;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.R;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.WebApiRestfulWS.SampleApi;
@@ -72,6 +73,10 @@ public class TransactionsFragment extends Fragment {
     List<gw_trnsct_GeneralBindingModel> List_valuesGeneralTransactionsData; // used for boath ListView and RecyclerView
     List<gw_trnsct_GeneralBindingModel> List_valuesGeneralTransactionsData_ForFiltring; // Used for filtring in RecyclerView
     //List<gw_trnsct_GeneralBindingModel> List_TransactionsData;
+    //List<gw_trnsct_ExtendedBindingModel> List_valuesExtendedTransactionsData;
+    //ListViewTransactionsDataAdapter listViewTransactionsDataAdapter_2;
+
+    //private int size_listTrnscExtended = 0;
 
     ArrayAdapter<gw_trnsct_GeneralBindingModel> adapter = null; // used for ListView
     ListView listView_GeneralTransactionsData; // used for ListView
@@ -146,6 +151,7 @@ public class TransactionsFragment extends Fragment {
         loadingGeneralTransactionsData();
         //onSearching();
         //Filter();
+        //loadExtendedTransactionsData();
 
 
 
@@ -204,7 +210,7 @@ public class TransactionsFragment extends Fragment {
 
                 for (int i=0;i<List_valuesGeneralTransactionsData.size();i++){
                     if(textlength <= List_valuesGeneralTransactionsData.get(i).getIdTransaction().length()){
-                        Log.d("ertyyy",List_valuesGeneralTransactionsData.get(i).getIdTransaction().toLowerCase().trim());
+                        Log.d("Log Id Transaction",List_valuesGeneralTransactionsData.get(i).getIdTransaction().toLowerCase().trim());
                         if (       List_valuesGeneralTransactionsData.get(i).getIdTransaction().toLowerCase().trim().contains(
                                 editText_SearchTransactions.getText().toString().toLowerCase().trim())
                                 || List_valuesGeneralTransactionsData.get(i).getAmountAuthorisedNumeric().toLowerCase().trim().contains(
@@ -351,6 +357,35 @@ public class TransactionsFragment extends Fragment {
         }
     }
 
+    /*
+
+    private void loadExtendedTransactionsData(){
+        new GetExtendedTransactionTask().execute();
+    }
+
+    // Class GetExtendedTransactionTask
+
+    class GetExtendedTransactionTask extends AsyncTask<String, String, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            try {
+                List_valuesExtendedTransactionsData = api.GetExtendedTransactionsData().execute().body();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            size_listTrnscExtended = List_valuesExtendedTransactionsData.size();
+            listViewTransactionsDataAdapter_2 = new ListViewTransactionsDataAdapter(List_valuesExtendedTransactionsData,TransactionsFragment.this.getContext());
+            super.onPostExecute(s);
+        }
+    }
+    */
     /// Class : TransactionsGeneralDataForFiltringTask
    /* class TransactionsGeneralDataForFiltringTask extends AsyncTask<String, String, String> {
 

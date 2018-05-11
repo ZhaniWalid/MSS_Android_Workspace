@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="15dp"
+    android:background="@color/five">
+
+    <TextView
+            android:id="@+id/txtView_EtatCloture_ExtendedTrnsData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/etat_cloture"
+            android:layout_marginTop="50dp"
+            android:textStyle="bold"
+            android:drawableStart="@drawable/ic_info_black_24dp"/>
+
+    <TextView
+            android:id="@+id/txtView_CurrentDate_ExtendedTrnsData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/current_date_transaction"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/txtView_EtatCloture_ExtendedTrnsData"
+            android:drawableStart="@drawable/ic_date_picker_range_black_24dp"
+            android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/txtView_TimeSystemTransaction_ExtendedTrnsData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/time_system_transaction"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/txtView_CurrentDate_ExtendedTrnsData"
+        android:drawableStart="@drawable/ic_alarm_on_black_24dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/txtView_Transactiontype_ExtendedTrnsData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/transaction_type"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/txtView_TimeSystemTransaction_ExtendedTrnsData"
+        android:drawableStart="@drawable/ic_euro_symbol_black_24dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/txtView_ResponseCode_ExtendedTrnsData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/response_code"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/txtView_Transactiontype_ExtendedTrnsData"
+        android:drawableStart="@drawable/ic_sync_black_24dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/txtView_ApprovalCode_ExtendedTrnsData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/approval_code"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/txtView_ResponseCode_ExtendedTrnsData"
+        android:drawableStart="@drawable/ic_code_black_24dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/txtView_CardMask_ExtendedTrnsData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/card_mask_pan"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/txtView_ApprovalCode_ExtendedTrnsData"
+        android:drawableStart="@drawable/ic_visibility_off_black_24dp"
+        android:textStyle="bold"/>
+
+</RelativeLayout>

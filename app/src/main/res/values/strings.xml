@@ -192,6 +192,13 @@
     <string name="toolbar_transactions_title">Transactions</string>
     <string name="action_transactions_search">Search</string>
     <string name="search_transactions_hint">Type here…</string>
+    <string name="etat_cloture">Etat Cloture</string>
+    <string name="current_date_transaction">Current Date Transaction</string>
+    <string name="time_system_transaction">Time System Transaction</string>
+    <string name="transaction_type">Transaction Type</string>
+    <string name="response_code">Response Code</string>
+    <string name="approval_code">Approval Code</string>
+    <string name="card_mask_pan">Card Mask (Pan)</string>
     <!-- Fin : Transactions Search Strings-->
 
 </resources>

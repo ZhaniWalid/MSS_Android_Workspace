@@ -37,6 +37,23 @@ public class gw_trnsct_GeneralBindingModel {
     @SerializedName("bankOfRequest")
     public String BankOfRequest ;
 
+    // Extended Part
+
+    @SerializedName("etatCloture")
+    public String EtatCloture;
+    @SerializedName("currentDate")
+    public String CurrentDate;
+    @SerializedName("timeSystemTransaction")
+    public String TimeSystemTransaction;
+    @SerializedName("transactiontype")
+    public String Transactiontype;
+    @SerializedName("responseCode")
+    public String ResponseCode;
+    @SerializedName("fiD_F_ApprovalCode")
+    public String FID_F_ApprovalCode;
+    @SerializedName("cardMask")
+    public String CardMask;
+
     public gw_trnsct_GeneralBindingModel() {
     }
 
@@ -57,6 +74,39 @@ public class gw_trnsct_GeneralBindingModel {
         this.AmountAuthorisedNumeric = AmountAuthorisedNumeric;
         this.EtatTransaction = EtatTransaction;
         this.BankOfRequest = BankOfRequest;
+    }
+
+    public gw_trnsct_GeneralBindingModel(String idTransaction, String idMerchant, String idTerminalMerchant, String idHost, String amountAuthorisedNumeric, String etatTransaction, String bankOfRequest, String etatCloture, String currentDate, String timeSystemTransaction, String transactiontype, String responseCode, String FID_F_ApprovalCode, String cardMask) {
+        this.idTransaction = idTransaction;
+        IdMerchant = idMerchant;
+        IdTerminalMerchant = idTerminalMerchant;
+        IdHost = idHost;
+        AmountAuthorisedNumeric = amountAuthorisedNumeric;
+        EtatTransaction = etatTransaction;
+        BankOfRequest = bankOfRequest;
+        EtatCloture = etatCloture;
+        CurrentDate = currentDate;
+        TimeSystemTransaction = timeSystemTransaction;
+        Transactiontype = transactiontype;
+        ResponseCode = responseCode;
+        this.FID_F_ApprovalCode = FID_F_ApprovalCode;
+        CardMask = cardMask;
+    }
+
+    public gw_trnsct_GeneralBindingModel(String idMerchant, String idTerminalMerchant, String idHost, String amountAuthorisedNumeric, String etatTransaction, String bankOfRequest, String etatCloture, String currentDate, String timeSystemTransaction, String transactiontype, String responseCode, String FID_F_ApprovalCode, String cardMask) {
+        IdMerchant = idMerchant;
+        IdTerminalMerchant = idTerminalMerchant;
+        IdHost = idHost;
+        AmountAuthorisedNumeric = amountAuthorisedNumeric;
+        EtatTransaction = etatTransaction;
+        BankOfRequest = bankOfRequest;
+        EtatCloture = etatCloture;
+        CurrentDate = currentDate;
+        TimeSystemTransaction = timeSystemTransaction;
+        Transactiontype = transactiontype;
+        ResponseCode = responseCode;
+        this.FID_F_ApprovalCode = FID_F_ApprovalCode;
+        CardMask = cardMask;
     }
 
     public String getIdTransaction() {
@@ -113,5 +163,61 @@ public class gw_trnsct_GeneralBindingModel {
 
     public void setBankOfRequest(String bankOfRequest) {
         BankOfRequest = bankOfRequest;
+    }
+
+    public String getEtatCloture() {
+        return EtatCloture;
+    }
+
+    public void setEtatCloture(String etatCloture) {
+        EtatCloture = etatCloture;
+    }
+
+    public String getCurrentDate() {
+        return CurrentDate;
+    }
+
+    public void setCurrentDate(String currentDate) {
+        CurrentDate = currentDate;
+    }
+
+    public String getTimeSystemTransaction() {
+        return TimeSystemTransaction;
+    }
+
+    public void setTimeSystemTransaction(String timeSystemTransaction) {
+        TimeSystemTransaction = timeSystemTransaction;
+    }
+
+    public String getTransactiontype() {
+        return Transactiontype;
+    }
+
+    public void setTransactiontype(String transactiontype) {
+        Transactiontype = transactiontype;
+    }
+
+    public String getResponseCode() {
+        return ResponseCode;
+    }
+
+    public void setResponseCode(String responseCode) {
+        ResponseCode = responseCode;
+    }
+
+    public String getFID_F_ApprovalCode() {
+        return FID_F_ApprovalCode;
+    }
+
+    public void setFID_F_ApprovalCode(String FID_F_ApprovalCode) {
+        this.FID_F_ApprovalCode = FID_F_ApprovalCode;
+    }
+
+    public String getCardMask() {
+        return CardMask;
+    }
+
+    public void setCardMask(String cardMask) {
+        CardMask = cardMask;
     }
 }
