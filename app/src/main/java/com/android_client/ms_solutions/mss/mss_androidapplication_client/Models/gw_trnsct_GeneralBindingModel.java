@@ -2,6 +2,8 @@ package com.android_client.ms_solutions.mss.mss_androidapplication_client.Models
 
 import com.google.gson.annotations.SerializedName;
 
+import javax.annotation.Nullable;
+
 /**
  * Created by Walid Zhani @Walid.Zhy7 on 07/05/2018.
  */
@@ -30,8 +32,11 @@ public class gw_trnsct_GeneralBindingModel {
     public String IdTerminalMerchant ;
     @SerializedName("idHost")
     public String IdHost ;
-    @SerializedName("amountAuthorisedNumeric")
-    public String AmountAuthorisedNumeric ;
+   // @SerializedName("amountAuthorisedNumeric")
+   // public String AmountAuthorisedNumeric ;
+    @SerializedName("amount")
+    @Nullable
+    public double Amount;
     @SerializedName("etatTransaction")
     public String EtatTransaction ;
     @SerializedName("bankOfRequest")
@@ -57,31 +62,31 @@ public class gw_trnsct_GeneralBindingModel {
     public gw_trnsct_GeneralBindingModel() {
     }
 
-    public gw_trnsct_GeneralBindingModel(String idTransaction, String IdMerchant, String IdTerminalMerchant, String IdHost, String AmountAuthorisedNumeric, String EtatTransaction, String BankOfRequest) {
+    public gw_trnsct_GeneralBindingModel(String idTransaction, String IdMerchant, String IdTerminalMerchant, String IdHost, @Nullable double Amount, String EtatTransaction, String BankOfRequest) {
         this.idTransaction = idTransaction;
         this.IdMerchant = IdMerchant;
         this.IdTerminalMerchant = IdTerminalMerchant;
         this.IdHost = IdHost;
-        this.AmountAuthorisedNumeric = AmountAuthorisedNumeric;
+        this.Amount = Amount;
         this.EtatTransaction = EtatTransaction;
         this.BankOfRequest = BankOfRequest;
     }
 
-    public gw_trnsct_GeneralBindingModel(String IdMerchant, String IdTerminalMerchant, String IdHost, String AmountAuthorisedNumeric, String EtatTransaction, String BankOfRequest) {
+    public gw_trnsct_GeneralBindingModel(String IdMerchant, String IdTerminalMerchant, String IdHost, @Nullable double Amount, String EtatTransaction, String BankOfRequest) {
         this.IdMerchant = IdMerchant;
         this.IdTerminalMerchant = IdTerminalMerchant;
         this.IdHost = IdHost;
-        this.AmountAuthorisedNumeric = AmountAuthorisedNumeric;
+        this.Amount = Amount;
         this.EtatTransaction = EtatTransaction;
         this.BankOfRequest = BankOfRequest;
     }
 
-    public gw_trnsct_GeneralBindingModel(String idTransaction, String idMerchant, String idTerminalMerchant, String idHost, String amountAuthorisedNumeric, String etatTransaction, String bankOfRequest, String etatCloture, String currentDate, String timeSystemTransaction, String transactiontype, String responseCode, String FID_F_ApprovalCode, String cardMask) {
+    public gw_trnsct_GeneralBindingModel(String idTransaction, String idMerchant, String idTerminalMerchant, String idHost, @Nullable double amount, String etatTransaction, String bankOfRequest, String etatCloture, String currentDate, String timeSystemTransaction, String transactiontype, String responseCode, String FID_F_ApprovalCode, String cardMask) {
         this.idTransaction = idTransaction;
         IdMerchant = idMerchant;
         IdTerminalMerchant = idTerminalMerchant;
         IdHost = idHost;
-        AmountAuthorisedNumeric = amountAuthorisedNumeric;
+        Amount = amount;
         EtatTransaction = etatTransaction;
         BankOfRequest = bankOfRequest;
         EtatCloture = etatCloture;
@@ -93,11 +98,11 @@ public class gw_trnsct_GeneralBindingModel {
         CardMask = cardMask;
     }
 
-    public gw_trnsct_GeneralBindingModel(String idMerchant, String idTerminalMerchant, String idHost, String amountAuthorisedNumeric, String etatTransaction, String bankOfRequest, String etatCloture, String currentDate, String timeSystemTransaction, String transactiontype, String responseCode, String FID_F_ApprovalCode, String cardMask) {
+    public gw_trnsct_GeneralBindingModel(String idMerchant, String idTerminalMerchant, String idHost, @Nullable double amount, String etatTransaction, String bankOfRequest, String etatCloture, String currentDate, String timeSystemTransaction, String transactiontype, String responseCode, String FID_F_ApprovalCode, String cardMask) {
         IdMerchant = idMerchant;
         IdTerminalMerchant = idTerminalMerchant;
         IdHost = idHost;
-        AmountAuthorisedNumeric = amountAuthorisedNumeric;
+        Amount = amount;
         EtatTransaction = etatTransaction;
         BankOfRequest = bankOfRequest;
         EtatCloture = etatCloture;
@@ -141,12 +146,23 @@ public class gw_trnsct_GeneralBindingModel {
         IdHost = idHost;
     }
 
+    /*
     public String getAmountAuthorisedNumeric() {
         return AmountAuthorisedNumeric;
     }
 
     public void setAmountAuthorisedNumeric(String amountAuthorisedNumeric) {
         AmountAuthorisedNumeric = amountAuthorisedNumeric;
+    }
+    */
+
+    @Nullable
+    public double getAmount() {
+        return Amount;
+    }
+
+    public void setAmount(@Nullable double amount) {
+        Amount = amount;
     }
 
     public String getEtatTransaction() {

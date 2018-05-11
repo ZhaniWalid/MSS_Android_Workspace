@@ -136,7 +136,7 @@ public class ListViewTransactionsDataAdapter extends BaseAdapter {
         holder.textViewIdHost.setText("ID Host : " + List_trnsct_generalHolders.get(position).getIdHost());
 
         // Price Section
-        holder.textViewAmountAuthorisedNumeric.setText("Amount : " + List_trnsct_generalHolders.get(position).getAmountAuthorisedNumeric() + " Dinars");
+        holder.textViewAmountAuthorisedNumeric.setText("Amount : " + String.valueOf(List_trnsct_generalHolders.get(position).getAmount()) + " Dinars");
         holder.textViewEtatTransaction.setText("Transaction Status : " + List_trnsct_generalHolders.get(position).getEtatTransaction());
 
         if (List_trnsct_generalHolders.get(position).getEtatTransaction().equals("Transaction autorisée")) {

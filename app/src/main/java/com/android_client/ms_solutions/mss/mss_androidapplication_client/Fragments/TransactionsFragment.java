@@ -188,6 +188,8 @@ public class TransactionsFragment extends Fragment {
         listViewTransactionsDataAdapter = new ListViewTransactionsDataAdapter(TransactionsFragment.this.getContext(),List_TransactionsData);
         listView_GeneralTransactionsData.setAdapter(listViewTransactionsDataAdapter);*/
 
+       /*
+
         listView_GeneralTransactionsData.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -195,6 +197,8 @@ public class TransactionsFragment extends Fragment {
                 Toast.makeText(TransactionsFragment.this.getContext(), msg+List_valuesGeneralTransactionsData_ForFiltring.get(position).getIdTransaction(), Toast.LENGTH_LONG).show();
             }
         });
+
+        */
 
         editText_SearchTransactions.addTextChangedListener(new TextWatcher() {
             @Override
@@ -213,7 +217,7 @@ public class TransactionsFragment extends Fragment {
                         Log.d("Log Id Transaction",List_valuesGeneralTransactionsData.get(i).getIdTransaction().toLowerCase().trim());
                         if (       List_valuesGeneralTransactionsData.get(i).getIdTransaction().toLowerCase().trim().contains(
                                 editText_SearchTransactions.getText().toString().toLowerCase().trim())
-                                || List_valuesGeneralTransactionsData.get(i).getAmountAuthorisedNumeric().toLowerCase().trim().contains(
+                                || String.valueOf(List_valuesGeneralTransactionsData.get(i).getAmount()).toLowerCase().trim().contains(
                                 editText_SearchTransactions.getText().toString().toLowerCase().trim())
                                 || List_valuesGeneralTransactionsData.get(i).getEtatTransaction().toLowerCase().trim().contains(
                                 editText_SearchTransactions.getText().toString().toLowerCase().trim())

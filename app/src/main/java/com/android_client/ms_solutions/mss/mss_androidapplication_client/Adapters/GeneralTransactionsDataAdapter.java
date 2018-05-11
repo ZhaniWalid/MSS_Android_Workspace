@@ -76,7 +76,7 @@ public class GeneralTransactionsDataAdapter extends ArrayAdapter {
         textViewIdHost.setText("ID Host : " + gw_trnsct_generalBindingModel.getIdHost());
 
         // Price Section
-        textViewAmountAuthorisedNumeric.setText("Amount : " + gw_trnsct_generalBindingModel.getAmountAuthorisedNumeric() + " Dinars");
+        textViewAmountAuthorisedNumeric.setText("Amount : " + String.valueOf(gw_trnsct_generalBindingModel.getAmount()) + " Dinars");
         textViewEtatTransaction.setText("Transaction Status : " + gw_trnsct_generalBindingModel.getEtatTransaction());
 
         if (gw_trnsct_generalBindingModel.getEtatTransaction().equals("Transaction autorisée")) {

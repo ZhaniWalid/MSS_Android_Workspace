@@ -99,7 +99,7 @@ public class FilterGeneralTransactionsRecyclerAdpater extends RecyclerView.Adapt
         holder.textViewIdHost.setText("ID Host : " + gw_trnsct_generalBindingModel.getIdHost());
 
         // Price Section
-        holder.textViewAmountAuthorisedNumeric.setText("Amount : " + gw_trnsct_generalBindingModel.getAmountAuthorisedNumeric() + " Dinars");
+        holder.textViewAmountAuthorisedNumeric.setText("Amount : " + String.valueOf(gw_trnsct_generalBindingModel.getAmount()) + " Dinars");
         holder.textViewEtatTransaction.setText("Transaction Status : " + gw_trnsct_generalBindingModel.getEtatTransaction());
 
         if (gw_trnsct_generalBindingModel.getEtatTransaction().equals("Transaction autorisée")) {

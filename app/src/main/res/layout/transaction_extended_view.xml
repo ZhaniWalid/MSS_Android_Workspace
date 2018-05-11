@@ -11,7 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/etat_cloture"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:textStyle="bold"
             android:drawableStart="@drawable/ic_info_black_24dp"/>
 
