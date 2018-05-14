@@ -199,6 +199,15 @@
     <string name="response_code">Response Code</string>
     <string name="approval_code">Approval Code</string>
     <string name="card_mask_pan">Card Mask (Pan)</string>
+    <string name="bank_ticket">Bank Ticket</string>
+    <string name="application_identifier_card">Application Identifier Card</string>
+    <string name="application_cryptogram_sign">Application Cryptogram (Sign)</string>
+    <string name="terminal_verification_result_tvr">Terminal Verification Result (TVR)</string>
+    <string name="transaction_status_information_tsi">Transaction Status Information (TSI)</string>
+    <string name="card_used_for_payement">Card Used For Payement</string>
+    <string name="num_ro_facture">Numéro Facture</string>
+    <string name="ticket_to_keep">Ticket to keep</string>
+    <string name="thank_you_for_your_visit">Thank you for your visit</string>
     <!-- Fin : Transactions Search Strings-->
 
 </resources>

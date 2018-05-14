@@ -24,6 +24,7 @@ import javax.annotation.Nullable;
 
 public class gw_trnsct_GeneralBindingModel {
 
+    // General Part
     @SerializedName("idTransaction")
     public String idTransaction ;
     @SerializedName("idMerchant")
@@ -58,6 +59,20 @@ public class gw_trnsct_GeneralBindingModel {
     public String FID_F_ApprovalCode;
     @SerializedName("cardMask")
     public String CardMask;
+
+    // Another Fields for Ticket Part
+    @SerializedName("applicationIdentifierCard")
+    public String ApplicationIdentifierCard; // APPID
+    @SerializedName("applicationCryptogram")
+    public String ApplicationCryptogram; // Sign
+    @SerializedName("terminalVerificationResults")
+    public String TerminalVerificationResults; // TVR
+    @SerializedName("transactionStatusInformation")
+    public String TransactionStatusInformation; // TSI
+    @SerializedName("cardUsedForPayement")
+    public String CardUsedForPayement; // Carte
+    // public string BillingNumber; // Num Facturation
+
 
     public gw_trnsct_GeneralBindingModel() {
     }
@@ -112,6 +127,49 @@ public class gw_trnsct_GeneralBindingModel {
         ResponseCode = responseCode;
         this.FID_F_ApprovalCode = FID_F_ApprovalCode;
         CardMask = cardMask;
+    }
+
+    public gw_trnsct_GeneralBindingModel(String idTransaction, String idMerchant, String idTerminalMerchant, String idHost, double amount, String etatTransaction, String bankOfRequest, String etatCloture, String currentDate, String timeSystemTransaction, String transactiontype, String responseCode, String FID_F_ApprovalCode, String cardMask, String applicationIdentifierCard, String applicationCryptogram, String terminalVerificationResults, String transactionStatusInformation, String cardUsedForPayement) {
+        this.idTransaction = idTransaction;
+        IdMerchant = idMerchant;
+        IdTerminalMerchant = idTerminalMerchant;
+        IdHost = idHost;
+        Amount = amount;
+        EtatTransaction = etatTransaction;
+        BankOfRequest = bankOfRequest;
+        EtatCloture = etatCloture;
+        CurrentDate = currentDate;
+        TimeSystemTransaction = timeSystemTransaction;
+        Transactiontype = transactiontype;
+        ResponseCode = responseCode;
+        this.FID_F_ApprovalCode = FID_F_ApprovalCode;
+        CardMask = cardMask;
+        ApplicationIdentifierCard = applicationIdentifierCard;
+        ApplicationCryptogram = applicationCryptogram;
+        TerminalVerificationResults = terminalVerificationResults;
+        TransactionStatusInformation = transactionStatusInformation;
+        CardUsedForPayement = cardUsedForPayement;
+    }
+
+    public gw_trnsct_GeneralBindingModel(String idMerchant, String idTerminalMerchant, String idHost, double amount, String etatTransaction, String bankOfRequest, String etatCloture, String currentDate, String timeSystemTransaction, String transactiontype, String responseCode, String FID_F_ApprovalCode, String cardMask, String applicationIdentifierCard, String applicationCryptogram, String terminalVerificationResults, String transactionStatusInformation, String cardUsedForPayement) {
+        IdMerchant = idMerchant;
+        IdTerminalMerchant = idTerminalMerchant;
+        IdHost = idHost;
+        Amount = amount;
+        EtatTransaction = etatTransaction;
+        BankOfRequest = bankOfRequest;
+        EtatCloture = etatCloture;
+        CurrentDate = currentDate;
+        TimeSystemTransaction = timeSystemTransaction;
+        Transactiontype = transactiontype;
+        ResponseCode = responseCode;
+        this.FID_F_ApprovalCode = FID_F_ApprovalCode;
+        CardMask = cardMask;
+        ApplicationIdentifierCard = applicationIdentifierCard;
+        ApplicationCryptogram = applicationCryptogram;
+        TerminalVerificationResults = terminalVerificationResults;
+        TransactionStatusInformation = transactionStatusInformation;
+        CardUsedForPayement = cardUsedForPayement;
     }
 
     public String getIdTransaction() {
@@ -235,5 +293,46 @@ public class gw_trnsct_GeneralBindingModel {
 
     public void setCardMask(String cardMask) {
         CardMask = cardMask;
+    }
+
+
+    public String getApplicationIdentifierCard() {
+        return ApplicationIdentifierCard;
+    }
+
+    public void setApplicationIdentifierCard(String applicationIdentifierCard) {
+        ApplicationIdentifierCard = applicationIdentifierCard;
+    }
+
+    public String getApplicationCryptogram() {
+        return ApplicationCryptogram;
+    }
+
+    public void setApplicationCryptogram(String applicationCryptogram) {
+        ApplicationCryptogram = applicationCryptogram;
+    }
+
+    public String getTerminalVerificationResults() {
+        return TerminalVerificationResults;
+    }
+
+    public void setTerminalVerificationResults(String terminalVerificationResults) {
+        TerminalVerificationResults = terminalVerificationResults;
+    }
+
+    public String getTransactionStatusInformation() {
+        return TransactionStatusInformation;
+    }
+
+    public void setTransactionStatusInformation(String transactionStatusInformation) {
+        TransactionStatusInformation = transactionStatusInformation;
+    }
+
+    public String getCardUsedForPayement() {
+        return CardUsedForPayement;
+    }
+
+    public void setCardUsedForPayement(String cardUsedForPayement) {
+        CardUsedForPayement = cardUsedForPayement;
     }
 }

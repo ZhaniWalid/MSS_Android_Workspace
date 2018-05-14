@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp"
+    android:background="@color/white"
+    android:scrollbarStyle="insideInset"
+    android:scrollbars="vertical">
+
+    <TextView
+        android:id="@+id/txtView_BankTicket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bank_ticket"
+        android:layout_marginTop="15dp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="@color/blue_grey"/>
+
+    <TextView
+    android:id="@+id/txtView_CardMask_Ticket"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/card_mask_pan"
+    android:layout_marginTop="20dp"
+    android:layout_below="@+id/txtView_BankTicket"
+    android:textStyle="bold"
+    android:textColor="@color/black"    />
+
+    <TextView
+        android:id="@+id/txtView_ApprovalCode_Ticket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/approval_code"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/txtView_CardMask_Ticket"
+        android:textStyle="bold"
+        android:textColor="@color/black" />
+
+    <TextView
+    android:id="@+id/txtView_Amount_Ticket"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/amount"
+    android:layout_marginTop="15dp"
+    android:layout_below="@+id/txtView_ApprovalCode_Ticket"
+    android:textStyle="bold"
+    android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/txtView_CurrentDate_Ticket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/current_date_transaction"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/txtView_Amount_Ticket"
+        android:textStyle="bold"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/txtView_APPID_Ticket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/application_identifier_card"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/txtView_CurrentDate_Ticket"
+        android:textStyle="bold"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/txtView_App_Cryp_Sign_Ticket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/application_cryptogram_sign"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/txtView_APPID_Ticket"
+        android:textStyle="bold"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/txtView_Term_Verif_Res_Ticket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/terminal_verification_result_tvr"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/txtView_App_Cryp_Sign_Ticket"
+        android:textStyle="bold"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/txtView_Trans_Status_Info_Ticket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/transaction_status_information_tsi"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/txtView_Term_Verif_Res_Ticket"
+        android:textStyle="bold"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/txtView_Card_4_Payemnt_Ticket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/card_used_for_payement"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/txtView_Trans_Status_Info_Ticket"
+        android:textStyle="bold"
+        android:textColor="@color/black" />
+
+    <!--
+
+    <TextView
+        android:id="@+id/txtView_Num_Facture_Ticket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/num_ro_facture"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/txtView_Card_4_Payemnt_Ticket"
+        android:textStyle="bold"
+        android:textColor="@color/black" />
+
+     -->
+
+    <TextView
+        android:id="@+id/txtView_Transaction_Type_Ticket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/transaction_type"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/txtView_Card_4_Payemnt_Ticket"
+        android:textStyle="bold"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/txtView_TicketToKeep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ticket_to_keep"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/txtView_Transaction_Type_Ticket"
+        android:textStyle="bold"
+        android:textColor="@color/blue_grey"
+        android:textSize="20sp"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/txtView_ThankYou"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/thank_you_for_your_visit"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/txtView_TicketToKeep"
+        android:textStyle="bold"
+        android:textColor="@color/blue_grey"
+        android:textSize="20sp"
+        android:textAlignment="center"/>
+
+</RelativeLayout>

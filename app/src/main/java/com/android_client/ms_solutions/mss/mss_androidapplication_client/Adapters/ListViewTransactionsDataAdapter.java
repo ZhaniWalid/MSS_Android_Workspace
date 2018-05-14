@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android_client.ms_solutions.mss.mss_androidapplication_client.Holders.ViewTransactionHolder;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.gw_trnsct_ExtendedBindingModel;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.gw_trnsct_GeneralBindingModel;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.R;
@@ -98,6 +99,7 @@ public class ListViewTransactionsDataAdapter extends BaseAdapter {
             // Get Extended Transaction Data on Pressing the Floating Action Button
             //holder.fabGetExtendedTransactionsData = view.findViewById(R.id.fab_getExtendedTransactionData);
             holder.imgGetExtendedTransaction = view.findViewById(R.id.img_getExtendedTransactionData);
+            holder.imgGetTicket = view.findViewById(R.id.img_getTicket);
 
             view.setTag(holder);
         } else {
@@ -121,6 +123,13 @@ public class ListViewTransactionsDataAdapter extends BaseAdapter {
               public void onClick(View view) {
                       afterViewsExtendedTransactionsDATA(gw_trnsct_generalBindingModel);
 
+              }
+          });
+
+          holder.imgGetTicket.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                  afterViewsGetTicket(gw_trnsct_generalBindingModel);
               }
           });
 
@@ -210,6 +219,42 @@ public class ListViewTransactionsDataAdapter extends BaseAdapter {
 
     }
 
+    private void afterViewsGetTicket(gw_trnsct_GeneralBindingModel gw_trnsct_generalBindingModel){
+
+        LayoutInflater inflater = LayoutInflater.from(mContext);
+        View subView = inflater.inflate(R.layout.ticket_transaction, null);
+
+        final TextView txtViewCardMask_Pan_Ticket = subView.findViewById(R.id.txtView_CardMask_Ticket);
+        final TextView txtViewApprovalCode_Ticket = subView.findViewById(R.id.txtView_ApprovalCode_Ticket);
+        final TextView txtViewAmount_Ticket = subView.findViewById(R.id.txtView_Amount_Ticket);
+        final TextView txtViewCurrentTransactionDate_Ticket = subView.findViewById(R.id.txtView_CurrentDate_Ticket);
+        final TextView txtView_APPID_Ticket = subView.findViewById(R.id.txtView_APPID_Ticket);
+        final TextView txtViewSignAppCryp_Ticket = subView.findViewById(R.id.txtView_App_Cryp_Sign_Ticket);
+        final TextView txtViewTVR_Ticket = subView.findViewById(R.id.txtView_Term_Verif_Res_Ticket);
+        final TextView txtViewTSI_Ticket = subView.findViewById(R.id.txtView_Trans_Status_Info_Ticket);
+        final TextView txtViewCard4Payemnt_Ticket = subView.findViewById(R.id.txtView_Card_4_Payemnt_Ticket);
+        final TextView txtViewTransactionType_Ticket = subView.findViewById(R.id.txtView_Transaction_Type_Ticket);
+
+        txtViewCardMask_Pan_Ticket.setText("Pan : "+gw_trnsct_generalBindingModel.getCardMask());
+        txtViewApprovalCode_Ticket.setText("Approval Code : "+gw_trnsct_generalBindingModel.getFID_F_ApprovalCode());
+        txtViewAmount_Ticket.setText("Amount : "+String.valueOf(gw_trnsct_generalBindingModel.getAmount())+" TND");
+        txtViewCurrentTransactionDate_Ticket.setText("Transaction Date : "+gw_trnsct_generalBindingModel.getCurrentDate());
+        txtView_APPID_Ticket.setText("APPID : "+gw_trnsct_generalBindingModel.getApplicationIdentifierCard());
+        txtViewSignAppCryp_Ticket.setText("Cryptogram Sign : "+gw_trnsct_generalBindingModel.getApplicationCryptogram());
+        txtViewTVR_Ticket.setText("TVR : "+gw_trnsct_generalBindingModel.getTerminalVerificationResults());
+        txtViewTSI_Ticket.setText("TSI : "+gw_trnsct_generalBindingModel.getTransactionStatusInformation());
+        txtViewCard4Payemnt_Ticket.setText("Payement Method : "+gw_trnsct_generalBindingModel.getCardUsedForPayement());
+        txtViewTransactionType_Ticket.setText("Transaction Type : "+gw_trnsct_generalBindingModel.getTransactiontype());
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle("Ticket De Caisse");
+        builder.setIcon(mContext.getResources().getDrawable(R.drawable.ic_euro_symbol_black_24dp));
+        builder.setView(subView);
+        builder.create();
+        builder.show();
+
+    }
+
    /* private void loadExtendedTransactionsData(){
        new GetExtendedTransactionTask().execute();
     }
@@ -236,13 +281,4 @@ public class ListViewTransactionsDataAdapter extends BaseAdapter {
         }
     } */
 
-    // ViewHolder Class
-    class ViewTransactionHolder {
-
-        public ImageView imageViewBankOfRequest;
-        public TextView textViewIdTransaction, textViewIdMerchant, textViewIdTerminalMerchant;
-        public TextView textViewIdHost, textViewAmountAuthorisedNumeric, textViewEtatTransaction;
-        //public FloatingActionButton fabGetExtendedTransactionsData;
-        public ImageView imgGetExtendedTransaction;
-    }
 }

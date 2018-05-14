@@ -51,8 +51,8 @@ public interface SampleApi {
     @GET("api/User/GetFiltrableTransactions")
     Call<List<gw_trnsct_GeneralBindingModel>> GetGeneralTransactionsData();
 
-    @GET("api/User/GetExtendedFiltrableTransactions")
-    Call<List<gw_trnsct_ExtendedBindingModel>> GetExtendedTransactionsData();
+   // @GET("api/User/GetExtendedFiltrableTransactions")
+   // Call<List<gw_trnsct_ExtendedBindingModel>> GetExtendedTransactionsData();
 
     // PATCH ( Updates ) Parts
     /*
