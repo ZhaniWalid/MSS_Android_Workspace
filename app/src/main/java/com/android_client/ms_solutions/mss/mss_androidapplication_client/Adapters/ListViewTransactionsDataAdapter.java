@@ -32,8 +32,8 @@ public class ListViewTransactionsDataAdapter extends BaseAdapter {
     Context mContext;
     LayoutInflater inflater;
     private List<gw_trnsct_GeneralBindingModel> List_trnsct_generalHolders;
-    private List<gw_trnsct_ExtendedBindingModel> List_trnsct_extendedHolders;
-    SampleApi api = SampleApiFactory.getInstance();
+    //private List<gw_trnsct_ExtendedBindingModel> List_trnsct_extendedHolders;
+    //SampleApi api = SampleApiFactory.getInstance();
     //private int size_listTrnscExtended = 0;
 
     ViewTransactionHolder holder;
@@ -254,31 +254,4 @@ public class ListViewTransactionsDataAdapter extends BaseAdapter {
         builder.show();
 
     }
-
-   /* private void loadExtendedTransactionsData(){
-       new GetExtendedTransactionTask().execute();
-    }
-
-    // AsyncTask Class
-    // Class GetExtendedTransactionTask
-    class GetExtendedTransactionTask extends AsyncTask<String, String, String> {
-
-        @Override
-        protected String doInBackground(String... strings) {
-
-            try {
-                List_trnsct_extendedHolders = api.GetExtendedTransactionsData().execute().body();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            size_listTrnscExtended = List_trnsct_extendedHolders.size();
-            super.onPostExecute(s);
-        }
-    } */
-
 }

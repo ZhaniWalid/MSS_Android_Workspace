@@ -66,9 +66,9 @@ public class TransactionsFragment extends Fragment {
     private SearchView searchView_transactions;
     private LinearLayoutManager linearLayoutManager; */
 
-    private EditText editText_SearchTransactions;
-
     SampleApi api = SampleApiFactory.getInstance();
+
+    private EditText editText_SearchTransactions;
 
     List<gw_trnsct_GeneralBindingModel> List_valuesGeneralTransactionsData; // used for boath ListView and RecyclerView
     List<gw_trnsct_GeneralBindingModel> List_valuesGeneralTransactionsData_ForFiltring; // Used for filtring in RecyclerView
@@ -78,7 +78,7 @@ public class TransactionsFragment extends Fragment {
 
     //private int size_listTrnscExtended = 0;
 
-    ArrayAdapter<gw_trnsct_GeneralBindingModel> adapter = null; // used for ListView
+    //ArrayAdapter<gw_trnsct_GeneralBindingModel> adapter = null; // used for ListView
     ListView listView_GeneralTransactionsData; // used for ListView
     ListViewTransactionsDataAdapter listViewTransactionsDataAdapter;
 
@@ -129,6 +129,7 @@ public class TransactionsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_transactions, container, false);
+
         listView_GeneralTransactionsData = view.findViewById(R.id.ListView_transactionsGeneralData); // sa marche
         editText_SearchTransactions = view.findViewById(R.id.editText_search_transactions);
 
@@ -152,8 +153,6 @@ public class TransactionsFragment extends Fragment {
         //onSearching();
         //Filter();
         //loadExtendedTransactionsData();
-
-
 
         return view;
     }
@@ -201,6 +200,7 @@ public class TransactionsFragment extends Fragment {
         */
 
         editText_SearchTransactions.addTextChangedListener(new TextWatcher() {
+
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -280,36 +280,6 @@ public class TransactionsFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-  /*  private void onSearching(){
-
-        //SET ITS PROPETRIES
-        recyclerView_transactions.setLayoutManager(new LinearLayoutManager(TransactionsFragment.this.getContext()));
-        recyclerView_transactions.setItemAnimator(new DefaultItemAnimator());
-        //ADAPTER
-        //List<gw_trnsct_GeneralBindingModel> valuesGeneralTransactionsData_2 = mDatabase.listProducts();
-        loadingGeneralTransactionsData_ForFilter();
-
-        final FilterGeneralTransactionsRecyclerAdpater adapter = new FilterGeneralTransactionsRecyclerAdpater(TransactionsFragment.this.getContext(),List_valuesGeneralTransactionsData_ForFiltring);
-        recyclerView_transactions.setAdapter(adapter);
-
-        //SEARCH
-        searchView_transactions.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String query) {
-                //FILTER AS YOU TYPE
-                adapter.getFilter().filter(query);
-                return false;
-            }
-        });
-
-        // End -> for search view : filter
-    }*/
-
     private void loadingGeneralTransactionsData(){ new TransactionsGeneralDataTask().execute(); }
 
     //private void loadingGeneralTransactionsData_ForFilter(){ new TransactionsGeneralDataForFiltringTask().execute(); }
@@ -340,74 +310,10 @@ public class TransactionsFragment extends Fragment {
             listViewTransactionsDataAdapter = new ListViewTransactionsDataAdapter(TransactionsFragment.this.getContext(),List_valuesGeneralTransactionsData);
             listView_GeneralTransactionsData.setAdapter(listViewTransactionsDataAdapter);
 
-           /* if ( valuesGeneralTransactionsData.size() > 0 ){
-                recyclerView_transactions.setVisibility(View.VISIBLE);
-                generalTransactionsRecyclerAdpater = new GeneralTransactionsRecyclerAdpater(TransactionsFragment.this.getContext(),valuesGeneralTransactionsData);
-                recyclerView_transactions.setAdapter(generalTransactionsRecyclerAdpater);
-            }else{
-                recyclerView_transactions.setVisibility(View.GONE);
-                Toast.makeText(TransactionsFragment.this.getContext(), "Oups !!! Data Base Is Empty", Toast.LENGTH_LONG).show();
-            }*/
              FilterTransactionsData();
             //listTransactions_Size = List_valuesGeneralTransactionsData.size();
             super.onPostExecute(s);
         }
-
-        @Override
-        protected void onProgressUpdate(String... values) {
-            // notifying list adapter about data changes
-            // so that it renders the list view with updated data
-            adapter.notifyDataSetChanged();
-        }
     }
 
-    /*
-
-    private void loadExtendedTransactionsData(){
-        new GetExtendedTransactionTask().execute();
-    }
-
-    // Class GetExtendedTransactionTask
-
-    class GetExtendedTransactionTask extends AsyncTask<String, String, String> {
-
-        @Override
-        protected String doInBackground(String... strings) {
-
-            try {
-                List_valuesExtendedTransactionsData = api.GetExtendedTransactionsData().execute().body();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            size_listTrnscExtended = List_valuesExtendedTransactionsData.size();
-            listViewTransactionsDataAdapter_2 = new ListViewTransactionsDataAdapter(List_valuesExtendedTransactionsData,TransactionsFragment.this.getContext());
-            super.onPostExecute(s);
-        }
-    }
-    */
-    /// Class : TransactionsGeneralDataForFiltringTask
-   /* class TransactionsGeneralDataForFiltringTask extends AsyncTask<String, String, String> {
-
-        @Override
-        protected String doInBackground(String... strings) {
-            // Used for filtring in RecyclerView
-            try {
-                List_valuesGeneralTransactionsData_ForFiltring = api.GetGeneralTransactionsData().execute().body();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            Filter_listTransactions_Size = List_valuesGeneralTransactionsData_ForFiltring.size();
-            super.onPostExecute(s);
-        }
-    }*/
 }

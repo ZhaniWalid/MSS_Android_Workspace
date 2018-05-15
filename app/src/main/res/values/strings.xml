@@ -208,6 +208,11 @@
     <string name="num_ro_facture">Numéro Facture</string>
     <string name="ticket_to_keep">Ticket to keep</string>
     <string name="thank_you_for_your_visit">Thank you for your visit</string>
+    <string name="full_name_usermerchant">Full Name UserMerchant</string>
+    <string name="email_usermerchant">Email UserMerchant</string>
+    <string name="phone_number_usermerchant">Phone Number UserMerchant</string>
+    <string name="user_name_usermerchant">User Name UserMerchant</string>
+    <string name="organization_type_usermerchant">Organization Type UserMerchant</string>
     <!-- Fin : Transactions Search Strings-->
 
 </resources>

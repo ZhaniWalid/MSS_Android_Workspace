@@ -2,13 +2,27 @@ package com.android_client.ms_solutions.mss.mss_androidapplication_client.Fragme
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ListView;
 
+import com.android_client.ms_solutions.mss.mss_androidapplication_client.Adapters.ListViewUsersMerchantsAdapter;
+import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.AspNetUserBindingModel;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.R;
+import com.android_client.ms_solutions.mss.mss_androidapplication_client.WebApiRestfulWS.SampleApi;
+import com.android_client.ms_solutions.mss.mss_androidapplication_client.WebApiRestfulWS.SampleApiFactory;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +43,18 @@ public class UserManagementFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    SampleApi api = SampleApiFactory.getInstance();
+
+    private EditText editText_SearchUsersMerchants;
+
+    private List<AspNetUserBindingModel> List_UserMerchants;
+    private List<AspNetUserBindingModel> List_UserMerchants_ForFiltring;
+
+    ListView ListView_UsersMerchants;
+    ListViewUsersMerchantsAdapter listViewUsersMerchantsAdapter;
+
+    int textLength = 0;
 
     public UserManagementFragment() {
         // Required empty public constructor
@@ -65,7 +91,16 @@ public class UserManagementFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_management, container, false);
+        View view = inflater.inflate(R.layout.fragment_user_management, container, false);
+
+        ListView_UsersMerchants = view.findViewById(R.id.ListView_usersMerchants);
+        editText_SearchUsersMerchants = view.findViewById(R.id.editText_search_usersMerchants);
+
+        List_UserMerchants_ForFiltring = new ArrayList<>();
+
+        loadingUsersMerchantData();
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -87,6 +122,12 @@ public class UserManagementFragment extends Fragment {
     }
 
     @Override
+    public void setHasOptionsMenu(boolean hasMenu) {
+        setHasOptionsMenu(true);
+        super.setHasOptionsMenu(hasMenu);
+    }
+
+    @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
@@ -105,5 +146,83 @@ public class UserManagementFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    private void FilterUsersMerchantsData(){
+
+        editText_SearchUsersMerchants.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+
+                textLength = editText_SearchUsersMerchants.getText().length();
+                List_UserMerchants_ForFiltring.clear();
+
+                for (int i=0 ; i<List_UserMerchants.size(); i++){
+
+                    if (textLength <= List_UserMerchants.get(i).getUserName().length()){
+                        Log.d("Log User Name",List_UserMerchants.get(i).getUserName().toLowerCase().trim());
+                        if (    List_UserMerchants.get(i).getUserName().toLowerCase().trim().contains(
+                                editText_SearchUsersMerchants.getText().toString().toLowerCase().trim())
+                             || List_UserMerchants.get(i).getFirstName().toLowerCase().trim().contains(
+                                editText_SearchUsersMerchants.getText().toString().toLowerCase().trim())
+                             || List_UserMerchants.get(i).getLastName().toLowerCase().trim().contains(
+                                editText_SearchUsersMerchants.getText().toString().toLowerCase().trim() )
+                             || List_UserMerchants.get(i).getEmail().toLowerCase().trim().contains(
+                                editText_SearchUsersMerchants.getText().toString().toLowerCase().trim())
+                             || List_UserMerchants.get(i).getPhoneNumber().toLowerCase().trim().contains(
+                                editText_SearchUsersMerchants.getText().toString().toLowerCase().trim())
+                             || List_UserMerchants.get(i).getOrganizationTypeName().toLowerCase().trim().contains(
+                                editText_SearchUsersMerchants.getText().toString().toLowerCase().trim())  ) {
+
+                            List_UserMerchants_ForFiltring.add(List_UserMerchants.get(i));
+                        }
+                    }
+                }
+
+                listViewUsersMerchantsAdapter = new ListViewUsersMerchantsAdapter(UserManagementFragment.this.getContext(),List_UserMerchants_ForFiltring);
+                ListView_UsersMerchants.setAdapter(listViewUsersMerchantsAdapter);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
+
+    private void loadingUsersMerchantData() {
+        new UsersMerchantsDataTask().execute();
+    }
+
+    //// Début : Parties des : Classes AsyncTask
+
+    /// Class : UsersMerchantsDataTask
+    class UsersMerchantsDataTask extends AsyncTask<String, String, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                List_UserMerchants = api.GetOnlyAllUsersMerchants().execute().body();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+
+            listViewUsersMerchantsAdapter = new ListViewUsersMerchantsAdapter(UserManagementFragment.this.getContext(),List_UserMerchants);
+            ListView_UsersMerchants.setAdapter(listViewUsersMerchantsAdapter);
+
+            FilterUsersMerchantsData();
+
+            super.onPostExecute(s);
+        }
     }
 }

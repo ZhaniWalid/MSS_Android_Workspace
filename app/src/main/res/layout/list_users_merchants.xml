@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp">
+
+    <!--
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_transactions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"/>
+   -->
+
+    <ImageView
+        android:id="@+id/image_UserMerchant"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="10dp"
+        android:contentDescription="@string/property_image" />
+
+
+    <LinearLayout
+        android:id="@+id/infoSection_UserMerchant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/image_UserMerchant"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtView_FullName_UserMerchant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/colorAccent"
+            android:text="@string/full_name_usermerchant"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/txtView_Email_UserMerchant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/email_usermerchant"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/txtView_PhoneNumber_UserMerchant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/phone_number_usermerchant"
+            android:textSize="15sp" />
+
+        <!--
+
+        <TextView
+            android:id="@+id/txtView_idHost_GeneralData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/id_host"
+            android:textSize="15sp" />
+        -->
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/otherSection_UserMerchant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/infoSection_UserMerchant"
+        android:orientation="vertical"
+        android:paddingTop="7dp">
+
+        <TextView
+            android:id="@+id/txtView_UserName_UserMerchant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/colorAccent"
+            android:text="@string/user_name_usermerchant"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/txtView_OrganizationType_UserMerchant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txtView_UserName_UserMerchant"
+            android:text="@string/organization_type_usermerchant" />
+
+    </RelativeLayout>
+
+    <!--
+
+    <ImageView
+        android:id="@+id/img_getExtendedTransactionData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/pricingSection_GeneralData"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="13dp"
+        app:srcCompat="@drawable/ic_info_black_24dp" />
+
+    <ImageView
+        android:id="@+id/img_getTicket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/img_getExtendedTransactionData"
+        android:layout_marginStart="20dp"
+        app:srcCompat="@drawable/ic_card_membership_black_24dp" />
+
+    -->
+
+</RelativeLayout>

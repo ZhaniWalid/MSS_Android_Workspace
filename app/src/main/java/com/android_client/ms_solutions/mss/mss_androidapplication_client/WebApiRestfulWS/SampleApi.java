@@ -4,6 +4,7 @@ package com.android_client.ms_solutions.mss.mss_androidapplication_client.WebApi
  * Created by Walid Zhani @Walid.Zhy7 on 21/03/2018.
  */
 
+import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.AspNetUserBindingModel;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.gw_trnsct_ExtendedBindingModel;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.gw_trnsct_GeneralBindingModel;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.RegisterBindingModel;
@@ -50,6 +51,9 @@ public interface SampleApi {
 
     @GET("api/User/GetFiltrableTransactions")
     Call<List<gw_trnsct_GeneralBindingModel>> GetGeneralTransactionsData();
+
+    @GET("api/User/GetUsersMerchants")
+    Call<List<AspNetUserBindingModel>> GetOnlyAllUsersMerchants();
 
    // @GET("api/User/GetExtendedFiltrableTransactions")
    // Call<List<gw_trnsct_ExtendedBindingModel>> GetExtendedTransactionsData();
