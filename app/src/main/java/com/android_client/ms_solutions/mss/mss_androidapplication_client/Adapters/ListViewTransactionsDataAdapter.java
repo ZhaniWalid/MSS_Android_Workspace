@@ -2,25 +2,17 @@ package com.android_client.ms_solutions.mss.mss_androidapplication_client.Adapte
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.AsyncTask;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Holders.ViewTransactionHolder;
-import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.gw_trnsct_ExtendedBindingModel;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.gw_trnsct_GeneralBindingModel;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.R;
-import com.android_client.ms_solutions.mss.mss_androidapplication_client.WebApiRestfulWS.SampleApi;
-import com.android_client.ms_solutions.mss.mss_androidapplication_client.WebApiRestfulWS.SampleApiFactory;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -84,7 +76,7 @@ public class ListViewTransactionsDataAdapter extends BaseAdapter {
             //holder.name = (TextView) view.findViewById(R.id.name);
 
             // Find the Views in the View by Their Ids
-            holder.imageViewBankOfRequest = view.findViewById(R.id.imageBankOfRequest_GeneralData);
+            holder.imageViewBankId = view.findViewById(R.id.imageBankId_GeneralData);
 
             // Info Section
             holder.textViewIdTransaction = view.findViewById(R.id.txtView_idTransaction_GeneralData);
@@ -100,6 +92,10 @@ public class ListViewTransactionsDataAdapter extends BaseAdapter {
             //holder.fabGetExtendedTransactionsData = view.findViewById(R.id.fab_getExtendedTransactionData);
             holder.imgGetExtendedTransaction = view.findViewById(R.id.img_getExtendedTransactionData);
             holder.imgGetTicket = view.findViewById(R.id.img_getTicket);
+
+            // Bankin Section
+            holder.textViewBankName = view.findViewById(R.id.txtView_BankName_GeneralData);
+            holder.textViewBankOfRequest = view.findViewById(R.id.txtView_BankOfRequest_GeneralData);
 
             view.setTag(holder);
         } else {
@@ -165,17 +161,132 @@ public class ListViewTransactionsDataAdapter extends BaseAdapter {
             holder.textViewEtatTransaction.setTextColor(mContext.getResources().getColor(R.color.red));
         }
 
+        // Banking Section
+        holder.textViewBankName.setText("Bank Name : "+List_trnsct_generalHolders.get(position).getBankName_GateWay());
+        holder.textViewBankOfRequest.setText("Bank Of Request : "+List_trnsct_generalHolders.get(position).getBankOfRequest());
+
         // Set Image Of Bank Request
         // int imageID = context.getResources().getIdentifier("attijari_bank", "drawable", context.getPackageName());
-        // imageViewBankOfRequest.setImageResource(imageID);
+        // imageViewBankId.setImageResource(imageID);
         //get the image associated with this property
+
+       /*
         if (List_trnsct_generalHolders.get(position).getBankOfRequest().equals("ATTIJARI")) {
             int imageID = mContext.getResources().getIdentifier("attijari_bank", "drawable", mContext.getPackageName());
-            holder.imageViewBankOfRequest.setImageResource(imageID);
+            holder.imageViewBankId.setImageResource(imageID);
         } else {
             int imageID_Default = mContext.getResources().getIdentifier("mss_logo_3", "drawable", mContext.getPackageName());
-            holder.imageViewBankOfRequest.setImageResource(imageID_Default);
+            holder.imageViewBankId.setImageResource(imageID_Default);
         }
+        */
+
+        String bankIdValue = List_trnsct_generalHolders.get(position).getBankId_GateWay();
+        int imageID;
+
+        switch (bankIdValue){
+
+            case "AB":
+                imageID = mContext.getResources().getIdentifier("amen_bank", "drawable", mContext.getPackageName());
+            break;
+
+            case "ABC":
+                imageID = mContext.getResources().getIdentifier("abc_bank", "drawable", mContext.getPackageName());
+            break;
+
+            case "AlBaraka":
+                imageID = mContext.getResources().getIdentifier("albaraka_bank", "drawable", mContext.getPackageName());
+            break;
+
+            case "ATB":
+                imageID = mContext.getResources().getIdentifier("atb_bank", "drawable", mContext.getPackageName());
+            break;
+
+            case "ATTIJARI":
+                imageID = mContext.getResources().getIdentifier("attijari_bank", "drawable", mContext.getPackageName());
+            break;
+
+            case "BCT":
+                imageID = mContext.getResources().getIdentifier("bct_bank", "drawable", mContext.getPackageName());
+            break;
+
+            case "BFT":
+                imageID = mContext.getResources().getIdentifier("bft_bank", "drawable", mContext.getPackageName());
+            break;
+
+            case "BH":
+                imageID = mContext.getResources().getIdentifier("habitat_bank", "drawable", mContext.getPackageName());
+            break;
+
+            case "BIAT":
+                imageID = mContext.getResources().getIdentifier("biat_bank", "drawable", mContext.getPackageName());
+            break;
+
+            case "BNA":
+                imageID = mContext.getResources().getIdentifier("bna_bank", "drawable", mContext.getPackageName());
+            break;
+
+            case "BT":
+                imageID = mContext.getResources().getIdentifier("bt_bank", "drawable", mContext.getPackageName());
+            break;
+
+            case "BTE":
+                imageID = mContext.getResources().getIdentifier("bte_bank", "drawable", mContext.getPackageName());
+            break;
+
+            case "BTK":
+                imageID = mContext.getResources().getIdentifier("btk_bank", "drawable", mContext.getPackageName());
+            break;
+
+            case "BTL":
+                imageID = mContext.getResources().getIdentifier("btl_bank", "drawable", mContext.getPackageName());
+            break;
+
+            case "NAIB":
+                imageID = mContext.getResources().getIdentifier("naib_bank", "drawable", mContext.getPackageName());
+            break;
+
+            case "ONP":
+                imageID = mContext.getResources().getIdentifier("onp_bank", "drawable", mContext.getPackageName());
+            break;
+
+            case "STB":
+                imageID = mContext.getResources().getIdentifier("stb_bank", "drawable", mContext.getPackageName());
+            break;
+
+            case "Stusid":
+                imageID = mContext.getResources().getIdentifier("stusid_bank", "drawable", mContext.getPackageName());
+            break;
+
+            case "TIB":
+                imageID = mContext.getResources().getIdentifier("tib_bank", "drawable", mContext.getPackageName());
+            break;
+
+            case "TQB":
+                imageID = mContext.getResources().getIdentifier("tqb_bank", "drawable", mContext.getPackageName());
+            break;
+
+            case "UBCI":
+                imageID = mContext.getResources().getIdentifier("ubci_bank", "drawable", mContext.getPackageName());
+            break;
+
+            case "UIB":
+                imageID = mContext.getResources().getIdentifier("uib_bank", "drawable", mContext.getPackageName());
+            break;
+
+            case "Zitouna":
+                imageID = mContext.getResources().getIdentifier("zitouna_bank", "drawable", mContext.getPackageName());
+            break;
+
+            case "---":
+                imageID = mContext.getResources().getIdentifier("mss_logo_3", "drawable", mContext.getPackageName());
+            break;
+
+            default:
+                imageID = mContext.getResources().getIdentifier("mss_logo_3", "drawable", mContext.getPackageName());
+             break;
+        }
+
+        holder.imageViewBankId.setImageResource(imageID);
 
     }
 

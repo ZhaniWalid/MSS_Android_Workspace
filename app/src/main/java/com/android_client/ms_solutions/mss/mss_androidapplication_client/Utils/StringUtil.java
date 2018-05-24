@@ -30,9 +30,8 @@ public class StringUtil {
          return NullOrWhitespace;
     }
 
-    public static boolean isEmailAddress(String string)
+    public static boolean isUserName (String string)
     {
-
         boolean valid;
 
         if (isNullOrWhitespace(string) || !isMatch("^[a-zA-Z]{3,15}$",string)   /*!string.contains("@") ||  !Patterns.EMAIL_ADDRESS.matcher(string).matches()*/  )
@@ -45,6 +44,34 @@ public class StringUtil {
         }
         else {
           //  editTxt_email_UserName.setError(null);
+            valid = true;
+        }
+
+        return valid;
+    }
+
+    public static boolean isPhoneNumber(String string){
+
+        boolean valid;
+        String regexPhoneNumberValidation = "^[0-9]*$"; // Only Numbers
+
+        if(isNullOrWhitespace(string) || !isMatch(regexPhoneNumberValidation,string) || string.length() < 8 || string.length() > 15 ){
+            valid = false;
+        }else {
+            valid = true;
+        }
+
+        return valid;
+    }
+
+    public static boolean isEmailAddress(String string){
+
+        boolean valid;
+        String regexEmailValidation = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
+
+        if (isNullOrWhitespace(string) || !isMatch(regexEmailValidation,string)){
+            valid = false;
+        }else {
             valid = true;
         }
 

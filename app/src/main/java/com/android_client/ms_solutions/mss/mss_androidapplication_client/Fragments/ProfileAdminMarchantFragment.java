@@ -118,14 +118,7 @@ public class ProfileAdminMarchantFragment extends Fragment {
         fab_activeEditUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //editTextId_ProfileUsr.setEnabled(true);
-                editTextUsrName_ProfileUsr.setEnabled(true);
-                editTextEmail_ProfileUsr.setEnabled(true);
-                editTextFirstName_ProfileUser.setEnabled(true);
-                editTextLastName_ProfileUser.setEnabled(true);
-                //editTextPassword_ProfileUser.setEnabled(true); // il reste désactivé car password est 'Haché' , besh 5edma td5lch b3adha avec el bd
-                editTextPhone_ProfileUser.setEnabled(true);
-
+                enableAllFields();
             }
         });
 
@@ -183,8 +176,18 @@ public class ProfileAdminMarchantFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
+    // Enable All Fields
+    private void enableAllFields(){
+
+        editTextUsrName_ProfileUsr.setEnabled(true);
+        editTextEmail_ProfileUsr.setEnabled(true);
+        editTextFirstName_ProfileUser.setEnabled(true);
+        editTextLastName_ProfileUser.setEnabled(true);
+        editTextPhone_ProfileUser.setEnabled(true);
+    }
+
     // Loading Information in the Profile User GUI
-    public void loadAdminMarchantProfileInfo() {
+    private void loadAdminMarchantProfileInfo() {
 
         // Loading Profile Image
         Glide.with(this.getContext())
@@ -246,7 +249,14 @@ public class ProfileAdminMarchantFragment extends Fragment {
 
         @Override
         protected void onPostExecute(String s) {
-            Toast.makeText(ProfileAdminMarchantFragment.this.getContext(),resultPatch_PartialUpdate, Toast.LENGTH_LONG).show();
+
+            if (resultPatch_PartialUpdate.equals("Update Succeeded")){
+                String msgSuccess = "Update succeeded for your profile : changes will be affected after Reconnection";
+                Toast.makeText(ProfileAdminMarchantFragment.this.getContext(),msgSuccess, Toast.LENGTH_LONG).show();
+            }else{
+                String msgFailed = "Update Failed For Your Profile";
+                Toast.makeText(ProfileAdminMarchantFragment.this.getContext(),msgFailed, Toast.LENGTH_LONG).show();
+            }
             //RefreshData(setUserName,setEmail,setFName,setLName,setPhoneNumber);
             super.onPostExecute(s);
         }

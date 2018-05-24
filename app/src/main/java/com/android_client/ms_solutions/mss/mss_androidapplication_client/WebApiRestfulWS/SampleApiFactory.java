@@ -31,7 +31,7 @@ public class SampleApiFactory {
 
 
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://192.168.1.105:83/MSS_AspDotNetToAndroid_WebApi_WS/")  //.baseUrl("http://10.0.2.2:83/MSS_AspDotNetToAndroid_WebApi_WS/")
+                    .baseUrl("http://192.168.1.101:83/MSS_AspDotNetToAndroid_WebApi_WS/")  //.baseUrl("http://10.0.2.2:83/MSS_AspDotNetToAndroid_WebApi_WS/")
                     .client(client)
                     .addConverterFactory(new NullOnEmptyConverterFactory())
                     .addConverterFactory(GsonConverterFactory.create())

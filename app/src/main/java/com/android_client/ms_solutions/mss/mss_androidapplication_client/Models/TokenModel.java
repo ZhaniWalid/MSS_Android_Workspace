@@ -29,4 +29,9 @@ public class TokenModel {
     @SerializedName("organizationID")
     public int organizationID;
 
+    //
+    @SerializedName("isBlocked")
+    public int isBlocked; // = 1 => Bloquer User Merchant | = 0 => Débloquer User Merchant
+    //
+
 }

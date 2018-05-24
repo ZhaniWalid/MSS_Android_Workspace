@@ -80,7 +80,13 @@ public class ProfileFragment extends Fragment {
     public UserPatchRequestModel userPatchRequestModel = new UserPatchRequestModel();
 
     private String getId = "" , getUserName = "" , getEmail = "" , getFName = "" , getLName = "" , getPhoneNumber = "";
+
+    /*
     private String setUserName = "" , setEmail = "" , setFName = "" , setLName = "" , setPhoneNumber = "";
+
+    private String getUserName_AfterUpdate = " ",getEmail_AfterUpdate = " ",getFirstName_AfterUpdate = " ";
+    private String getLastName_AfterUpdate = " ",getPhoneNumb_AfterUpdate = " ";
+    */
 
     private Handler myHander = new Handler();
 
@@ -140,14 +146,7 @@ public class ProfileFragment extends Fragment {
         fab_activeEditUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //editTextId_ProfileUsr.setEnabled(true);
-                editTextUsrName_ProfileUsr.setEnabled(true);
-                editTextEmail_ProfileUsr.setEnabled(true);
-                editTextFirstName_ProfileUser.setEnabled(true);
-                editTextLastName_ProfileUser.setEnabled(true);
-                //editTextPassword_ProfileUser.setEnabled(true); // il reste désactivé car password est 'Haché' , besh 5edma td5lch b3adha avec el bd
-                editTextPhone_ProfileUser.setEnabled(true);
-
+                enableAllFields();
             }
         });
 
@@ -213,8 +212,18 @@ public class ProfileFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
+    // Enable Fields
+    private void enableAllFields(){
+
+        editTextUsrName_ProfileUsr.setEnabled(true);
+        editTextEmail_ProfileUsr.setEnabled(true);
+        editTextFirstName_ProfileUser.setEnabled(true);
+        editTextLastName_ProfileUser.setEnabled(true);
+        editTextPhone_ProfileUser.setEnabled(true);
+    }
+
     // Loading Information in the Profile User GUI
-    public void loadUserProfileInfo() {
+    private void loadUserProfileInfo() {
 
         // Loading Profile Image
         Glide.with(this.getContext())
@@ -248,16 +257,18 @@ public class ProfileFragment extends Fragment {
 
     }
 
-   /* private void RefreshData(String param0,String param1,String param2,String param3,String param4){
+    /*
+    private void RefreshData(){
 
-        editTextUsrName_ProfileUsr.setText(param0);
-        editTextEmail_ProfileUsr.setText(param1);
-        editTextFirstName_ProfileUser.setText(param2);
-        editTextLastName_ProfileUser.setText(param3);
-        //editTextPassword_ProfileUser.setText(HomeActivity.userPassword_static);
-        editTextPhone_ProfileUser.setText(param4);
-
+        editTextUsrName_ProfileUsr.setText(getUserName_AfterUpdate);
+        editTextEmail_ProfileUsr.setText(getEmail_AfterUpdate);
+        editTextFirstName_ProfileUser.setText(getFirstName_AfterUpdate);
+        editTextLastName_ProfileUser.setText(getLastName_AfterUpdate);
+        editTextPhone_ProfileUser.setText(getPhoneNumb_AfterUpdate);
     }
+    */
+
+    /*
     private void RefrechAfterUpdate(){
 
         // refresh text views
@@ -305,6 +316,7 @@ public class ProfileFragment extends Fragment {
             return null;
         }*/
 
+
         @Override
         protected String doInBackground(String... params) {
             params = new String[6];
@@ -331,28 +343,20 @@ public class ProfileFragment extends Fragment {
 
             System.out.println(params[0]  + "\r\n" + params[1] + "\r\n" + params[2] + "\r\n" + params[3] + "\r\n" + params[4]);
 
-            // prepare call in Retrofit 2.0
-            /**try {
-                 JSONObject paramObject = new JSONObject();
-                 paramObject.put("UserName",params[0] );
-                 paramObject.put("Email", params[1]);
-                 paramObject.put("FirstName", params[2]);
-                 paramObject.put("LastName", params[3]);
-                 paramObject.put("PhoneNumber", params[4]);
-
-                 userPatchRequestModel = api.PatchUser(paramObject.toString()).execute().body();
-
-                 //Call<User> userCall = apiInterface.getUser(paramObject.toString());
-                 //userCall.enqueue(this);
-             } catch (JSONException e) {
-                 e.printStackTrace();
-             }*/
-
             try {
                 resultPatch_PartialUpdate = api.PartialUpdateProfileUser(params[0],params[1],params[2],params[3],params[4]).execute().body();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            /*
+            getUserName_AfterUpdate   = params[0];
+            getEmail_AfterUpdate      = params[1];
+            getFirstName_AfterUpdate  = params[2];
+            getLastName_AfterUpdate   = params[3];
+            getPhoneNumb_AfterUpdate  = params[4];
+            */
+
             //userPatchRequestModel = api.PatchUserHashMap(hashMap);
             //Gson gson = new Gson();
             //gson.toJson(userPatchRequestModel);
@@ -371,7 +375,15 @@ public class ProfileFragment extends Fragment {
 
         @Override
         protected void onPostExecute(String s) {
-            Toast.makeText(ProfileFragment.this.getContext(),resultPatch_PartialUpdate, Toast.LENGTH_LONG).show();
+
+            if (resultPatch_PartialUpdate.equals("Update Succeeded")){
+                String msgSuccess = "Update succeeded for your profile : changes will be affected after Reconnection";
+                Toast.makeText(ProfileFragment.this.getContext(),msgSuccess, Toast.LENGTH_LONG).show();
+                //RefreshData();
+            }else{
+                String msgFailed = "Update Failed For Your Profile";
+                Toast.makeText(ProfileFragment.this.getContext(),msgFailed, Toast.LENGTH_LONG).show();
+            }
             //RefreshData(setUserName,setEmail,setFName,setLName,setPhoneNumber);
             super.onPostExecute(s);
         }

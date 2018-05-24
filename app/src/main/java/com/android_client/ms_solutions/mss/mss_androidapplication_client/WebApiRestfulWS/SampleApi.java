@@ -14,12 +14,14 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface SampleApi {
 
@@ -40,6 +42,10 @@ public interface SampleApi {
     @POST("api/Account/Register")
     Call<String> Register(@Body RegisterBindingModel model);
 
+    @FormUrlEncoded
+    @POST("api/User/CreateUserMerchantByAdminMerchant")
+    Call<String> CreateUserMerchant(@Field("FirstName") String FirstName,@Field("LastName") String LastName,@Field("Email") String Email,@Field("Password") String Password,@Field("ConfirmPassword") String ConfirmPassword,@Field("PhoneNumber") String PhoneNumber,@Field("UserName") String UserName,@Field("Organization_Id") int Organization_Id);
+
     // PATCH ( Updates ) Parts
     @FormUrlEncoded
     @PATCH("api/User/PatchProfileUser")
@@ -49,11 +55,11 @@ public interface SampleApi {
     @PATCH("api/User/ChangePassword")
     Call<String> ChangePassword(@Field("OldPassword") String OldPassword,@Field("NewPassword") String NewPassword,@Field("ConfirmPassword") String ConfirmPassword);
 
-    @GET("api/User/GetFiltrableTransactions")
-    Call<List<gw_trnsct_GeneralBindingModel>> GetGeneralTransactionsData();
+    @PATCH("api/User/BlockUserMerchantByAdminMerchant/{idUserMerchantToBlock}")
+    Call<String> BlockUserMerchant(@Query("idUserMerchantToBlock") String idUserMerchantToBlock);
 
-    @GET("api/User/GetUsersMerchants")
-    Call<List<AspNetUserBindingModel>> GetOnlyAllUsersMerchants();
+    @PATCH("api/User/UnblockUserMerchantByAdminMerchant/{idUserMerchantToUnblock}")
+    Call<String> UnblockUserMerchant(@Query("idUserMerchantToUnblock") String idUserMerchantToUnblock);
 
    // @GET("api/User/GetExtendedFiltrableTransactions")
    // Call<List<gw_trnsct_ExtendedBindingModel>> GetExtendedTransactionsData();
@@ -77,4 +83,13 @@ public interface SampleApi {
     @GET("api/values")
     Call<String[]> GetValues(@Header("Authorize") String authorization);
 
+    @GET("api/User/GetFiltrableTransactions")
+    Call<List<gw_trnsct_GeneralBindingModel>> GetGeneralTransactionsData();
+
+    @GET("api/User/GetUsersMerchants")
+    Call<List<AspNetUserBindingModel>> GetOnlyAllUsersMerchants();
+
+    // DELETE Parts
+    @DELETE("api/User/DeleteUserMerchantByAdminMerchant/{idUserMerchantToDelete}")
+    Call<String> DeleteUserMerchant(@Query("idUserMerchantToDelete") String idUserMerchantToDelete);
 }

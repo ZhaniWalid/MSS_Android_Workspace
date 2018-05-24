@@ -6,8 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -51,7 +49,7 @@ public class GeneralTransactionsDataAdapter extends ArrayAdapter {
         View view = inflater.inflate(R.layout.transactions_general_data_layout, null);
 
         // Find the Views in the View by Their Ids
-        imageViewBankOfRequest = view.findViewById(R.id.imageBankOfRequest_GeneralData);
+        imageViewBankOfRequest = view.findViewById(R.id.imageBankId_GeneralData);
 
         // Info Section
         textViewIdTransaction = view.findViewById(R.id.txtView_idTransaction_GeneralData);
@@ -98,7 +96,7 @@ public class GeneralTransactionsDataAdapter extends ArrayAdapter {
 
         // Set Image Of Bank Request
         // int imageID = context.getResources().getIdentifier("attijari_bank", "drawable", context.getPackageName());
-        // imageViewBankOfRequest.setImageResource(imageID);
+        // imageViewBankId.setImageResource(imageID);
         //get the image associated with this property
         if (gw_trnsct_generalBindingModel.getBankOfRequest().equals("ATTIJARI")) {
             int imageID = context.getResources().getIdentifier("attijari_bank", "drawable", context.getPackageName());

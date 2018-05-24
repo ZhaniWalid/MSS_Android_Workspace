@@ -18,7 +18,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:src="@drawable/ic_account_circle_black_24dp_v21"
+            app:srcCompat="@drawable/ic_account_circle_black_24dp_v21"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_person_black_24dp"
                 android:hint="@string/prompt_username_usr_profile"
-                android:inputType="text"
+                android:inputType="textPersonName"
                 android:enabled="false"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -105,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_person_black_24dp"
                 android:hint="@string/prompt_firstname_usr_profile"
-                android:inputType="textEmailAddress"
+                android:inputType="textPersonName"
                 android:enabled="false"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -127,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_person_black_24dp"
                 android:hint="@string/prompt_lastname_usr_profile"
-                android:inputType="textEmailAddress"
+                android:inputType="textPersonName"
                 android:enabled="false"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -149,7 +149,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_phone_black_24dp"
                 android:hint="@string/prompt_phonenumber_usr_profile"
-                android:inputType="textEmailAddress"
+                android:inputType="text|phone"
                 android:enabled="false"/>
         </android.support.design.widget.TextInputLayout>
 

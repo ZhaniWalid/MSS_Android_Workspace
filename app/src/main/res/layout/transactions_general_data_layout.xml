@@ -17,7 +17,7 @@
    -->
 
     <ImageView
-        android:id="@+id/imageBankOfRequest_GeneralData"
+        android:id="@+id/imageBankId_GeneralData"
         android:layout_width="100dp"
         android:layout_height="120dp"
         android:layout_marginEnd="10dp"
@@ -28,7 +28,7 @@
         android:id="@+id/infoSection_GeneralData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/imageBankOfRequest_GeneralData"
+        android:layout_toEndOf="@+id/imageBankId_GeneralData"
         android:orientation="vertical">
 
         <TextView
@@ -93,12 +93,42 @@
 
     </RelativeLayout>
 
+
+    <RelativeLayout
+        android:id="@+id/bankingSection_GeneralData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pricingSection_GeneralData"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtView_BankName_GeneralData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/colorAccent"
+            android:text="@string/bank_name"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/txtView_BankOfRequest_GeneralData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txtView_BankName_GeneralData"
+            android:text="@string/bank_of_request"
+            android:background="@color/colorAccent"
+            android:textColor="@color/white"/>
+
+    </RelativeLayout>
+
     <ImageView
         android:id="@+id/img_getExtendedTransactionData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/pricingSection_GeneralData"
+        android:layout_below="@+id/bankingSection_GeneralData"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="13dp"
         app:srcCompat="@drawable/ic_info_black_24dp" />

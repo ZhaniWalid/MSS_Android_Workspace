@@ -8,7 +8,6 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <!--  -->
 
-
     <!-- Permission to allow consumption of Web Api WebService Restful -->
     <uses-permission android:name="android.permission.INTERNET" />
 

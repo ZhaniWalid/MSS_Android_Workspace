@@ -23,7 +23,7 @@ public class TransactionsFilterHolder extends RecyclerView.ViewHolder implements
     public TransactionsFilterHolder(View itemView) {
         super(itemView);
         // Find the Views in the View by Their Ids
-        imageViewBankOfRequest = itemView.findViewById(R.id.imageBankOfRequest_GeneralData);
+        imageViewBankOfRequest = itemView.findViewById(R.id.imageBankId_GeneralData);
 
         // Info Section
         textViewIdTransaction = itemView.findViewById(R.id.txtView_idTransaction_GeneralData);

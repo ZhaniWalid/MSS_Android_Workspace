@@ -42,7 +42,12 @@ public class gw_trnsct_GeneralBindingModel {
     public String EtatTransaction ;
     @SerializedName("bankOfRequest")
     public String BankOfRequest ;
-
+    //
+    @SerializedName("bankId_GateWay")
+    public String BankId_GateWay;
+    @SerializedName("bankName_GateWay")
+    public String BankName_GateWay;
+    //
     // Extended Part
 
     @SerializedName("etatCloture")
@@ -73,103 +78,7 @@ public class gw_trnsct_GeneralBindingModel {
     public String CardUsedForPayement; // Carte
     // public string BillingNumber; // Num Facturation
 
-
     public gw_trnsct_GeneralBindingModel() {
-    }
-
-    public gw_trnsct_GeneralBindingModel(String idTransaction, String IdMerchant, String IdTerminalMerchant, String IdHost, @Nullable double Amount, String EtatTransaction, String BankOfRequest) {
-        this.idTransaction = idTransaction;
-        this.IdMerchant = IdMerchant;
-        this.IdTerminalMerchant = IdTerminalMerchant;
-        this.IdHost = IdHost;
-        this.Amount = Amount;
-        this.EtatTransaction = EtatTransaction;
-        this.BankOfRequest = BankOfRequest;
-    }
-
-    public gw_trnsct_GeneralBindingModel(String IdMerchant, String IdTerminalMerchant, String IdHost, @Nullable double Amount, String EtatTransaction, String BankOfRequest) {
-        this.IdMerchant = IdMerchant;
-        this.IdTerminalMerchant = IdTerminalMerchant;
-        this.IdHost = IdHost;
-        this.Amount = Amount;
-        this.EtatTransaction = EtatTransaction;
-        this.BankOfRequest = BankOfRequest;
-    }
-
-    public gw_trnsct_GeneralBindingModel(String idTransaction, String idMerchant, String idTerminalMerchant, String idHost, @Nullable double amount, String etatTransaction, String bankOfRequest, String etatCloture, String currentDate, String timeSystemTransaction, String transactiontype, String responseCode, String FID_F_ApprovalCode, String cardMask) {
-        this.idTransaction = idTransaction;
-        IdMerchant = idMerchant;
-        IdTerminalMerchant = idTerminalMerchant;
-        IdHost = idHost;
-        Amount = amount;
-        EtatTransaction = etatTransaction;
-        BankOfRequest = bankOfRequest;
-        EtatCloture = etatCloture;
-        CurrentDate = currentDate;
-        TimeSystemTransaction = timeSystemTransaction;
-        Transactiontype = transactiontype;
-        ResponseCode = responseCode;
-        this.FID_F_ApprovalCode = FID_F_ApprovalCode;
-        CardMask = cardMask;
-    }
-
-    public gw_trnsct_GeneralBindingModel(String idMerchant, String idTerminalMerchant, String idHost, @Nullable double amount, String etatTransaction, String bankOfRequest, String etatCloture, String currentDate, String timeSystemTransaction, String transactiontype, String responseCode, String FID_F_ApprovalCode, String cardMask) {
-        IdMerchant = idMerchant;
-        IdTerminalMerchant = idTerminalMerchant;
-        IdHost = idHost;
-        Amount = amount;
-        EtatTransaction = etatTransaction;
-        BankOfRequest = bankOfRequest;
-        EtatCloture = etatCloture;
-        CurrentDate = currentDate;
-        TimeSystemTransaction = timeSystemTransaction;
-        Transactiontype = transactiontype;
-        ResponseCode = responseCode;
-        this.FID_F_ApprovalCode = FID_F_ApprovalCode;
-        CardMask = cardMask;
-    }
-
-    public gw_trnsct_GeneralBindingModel(String idTransaction, String idMerchant, String idTerminalMerchant, String idHost, double amount, String etatTransaction, String bankOfRequest, String etatCloture, String currentDate, String timeSystemTransaction, String transactiontype, String responseCode, String FID_F_ApprovalCode, String cardMask, String applicationIdentifierCard, String applicationCryptogram, String terminalVerificationResults, String transactionStatusInformation, String cardUsedForPayement) {
-        this.idTransaction = idTransaction;
-        IdMerchant = idMerchant;
-        IdTerminalMerchant = idTerminalMerchant;
-        IdHost = idHost;
-        Amount = amount;
-        EtatTransaction = etatTransaction;
-        BankOfRequest = bankOfRequest;
-        EtatCloture = etatCloture;
-        CurrentDate = currentDate;
-        TimeSystemTransaction = timeSystemTransaction;
-        Transactiontype = transactiontype;
-        ResponseCode = responseCode;
-        this.FID_F_ApprovalCode = FID_F_ApprovalCode;
-        CardMask = cardMask;
-        ApplicationIdentifierCard = applicationIdentifierCard;
-        ApplicationCryptogram = applicationCryptogram;
-        TerminalVerificationResults = terminalVerificationResults;
-        TransactionStatusInformation = transactionStatusInformation;
-        CardUsedForPayement = cardUsedForPayement;
-    }
-
-    public gw_trnsct_GeneralBindingModel(String idMerchant, String idTerminalMerchant, String idHost, double amount, String etatTransaction, String bankOfRequest, String etatCloture, String currentDate, String timeSystemTransaction, String transactiontype, String responseCode, String FID_F_ApprovalCode, String cardMask, String applicationIdentifierCard, String applicationCryptogram, String terminalVerificationResults, String transactionStatusInformation, String cardUsedForPayement) {
-        IdMerchant = idMerchant;
-        IdTerminalMerchant = idTerminalMerchant;
-        IdHost = idHost;
-        Amount = amount;
-        EtatTransaction = etatTransaction;
-        BankOfRequest = bankOfRequest;
-        EtatCloture = etatCloture;
-        CurrentDate = currentDate;
-        TimeSystemTransaction = timeSystemTransaction;
-        Transactiontype = transactiontype;
-        ResponseCode = responseCode;
-        this.FID_F_ApprovalCode = FID_F_ApprovalCode;
-        CardMask = cardMask;
-        ApplicationIdentifierCard = applicationIdentifierCard;
-        ApplicationCryptogram = applicationCryptogram;
-        TerminalVerificationResults = terminalVerificationResults;
-        TransactionStatusInformation = transactionStatusInformation;
-        CardUsedForPayement = cardUsedForPayement;
     }
 
     public String getIdTransaction() {
@@ -335,4 +244,25 @@ public class gw_trnsct_GeneralBindingModel {
     public void setCardUsedForPayement(String cardUsedForPayement) {
         CardUsedForPayement = cardUsedForPayement;
     }
+
+    //
+
+    public String getBankId_GateWay() {
+        return BankId_GateWay;
+    }
+
+    public void setBankId_GateWay(String bankId_GateWay) {
+        BankId_GateWay = bankId_GateWay;
+    }
+
+    public String getBankName_GateWay() {
+        return BankName_GateWay;
+    }
+
+    public void setBankName_GateWay(String bankName_GateWay) {
+        BankName_GateWay = bankName_GateWay;
+    }
+
+
+    //
 }

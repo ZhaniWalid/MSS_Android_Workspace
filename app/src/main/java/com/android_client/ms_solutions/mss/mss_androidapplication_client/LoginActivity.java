@@ -4,28 +4,20 @@ package com.android_client.ms_solutions.mss.mss_androidapplication_client;
  * Created by Walid Zhani @Walid.Zhy7 on 21/03/2018.
  */
 
-import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.Spanned;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Classes.AuthenticationResult;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.DialogBoxes.AlertMessageBox;
-import com.android_client.ms_solutions.mss.mss_androidapplication_client.DialogBoxes.AlertMessageBoxIcon;
-import com.android_client.ms_solutions.mss.mss_androidapplication_client.DialogBoxes.AlertMessageBoxOkClickCallback;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.RegisterBindingModel;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.TokenModel;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Utils.StringUtil;
@@ -38,13 +30,8 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 
 import butterknife.BindView;
-import retrofit2.Call;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
 @EActivity(R.layout.activity_login)
 public class LoginActivity extends AppCompatActivity {
@@ -141,7 +128,7 @@ public class LoginActivity extends AppCompatActivity {
         String email = editTxtEmail.getText().toString();
         String password = editTxtPwd.getText().toString();
         if (!StringUtil.isNullOrWhitespace(email) && !StringUtil.isNullOrWhitespace(email)) {
-            if (StringUtil.isEmailAddress(email)) {
+            if (StringUtil.isUserName(email)) {
                 if (StringUtil.isMatch("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*(_|[^\\w])).{6,}$", password)) {
                     RegisterBindingModel model = new RegisterBindingModel(email, password, password);
                     new RegisterAsyncTask().execute(model);
@@ -168,7 +155,7 @@ public class LoginActivity extends AppCompatActivity {
         if (!StringUtil.isNullOrWhitespace(email) && !StringUtil.isNullOrWhitespace(password)) {
 
             // Start of : another addition from another tuto for the waiting process
-            if (!validateEmailUsrName(email) && !validatePassword(password)) {
+            if (!validateUserName(email) && !validatePassword(password)) {
                 onLoginFailed();
                 return;
             }else {
@@ -197,11 +184,11 @@ public class LoginActivity extends AppCompatActivity {
        // Snackbar.make(null, "You Can't Go Back to Login Screen,You Should Logout First", Snackbar.LENGTH_LONG).setAction("Action", null).show();
     }
 
-    public boolean validateEmailUsrName(String input) {
+    public boolean validateUserName(String input) {
         boolean isValid;
 
         // Validates Email/Username in Login
-        if (!StringUtil.isEmailAddress(input)) {
+        if (!StringUtil.isUserName(input)) {
             editTextEmail.setError("Enter a valid Email address Or Username : at least 3 characters");
             isValid = false;
         } else {
@@ -309,15 +296,36 @@ public class LoginActivity extends AppCompatActivity {
 
                              } else {
 
-                                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                                 intent.putExtra("AccessToken", result.getAccessToken());
-                                 //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                 //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                 startActivity(intent);
-                                 Toast.makeText(getApplicationContext(), "Going To Normal ' Users Merchants ' Side", Toast.LENGTH_LONG).show();
+                                 if (tokenModel.isBlocked == 1){ // = 1 => Bloquer User Merchant
 
-                                 //String msg = "Invalid user token! Please login again! not found!  => Only 'Marchants' can access here , please try again";
-                                 //Toast.makeText(LoginActivity.this,msg,Toast.LENGTH_LONG).show();
+                                     //String msgTryAgain = "Access Denied : \r You Have Been Blocked By The Admin,Contact : walid.zhani@esprit.tn !";
+                                     //Toast.makeText(getApplicationContext(),msgTryAgain,Toast.LENGTH_LONG).show();
+
+                                       new AlertDialog.Builder(LoginActivity.this)
+                                                      .setTitle("Acces Denied : Blocked User")
+                                                      .setMessage("You Have Been Blocked By The Admin Merchant,Contact : walid.zhani@esprit.tn")
+                                                      .setIcon(getApplicationContext().getResources().getDrawable(R.drawable.ic_block_black_24dp))
+                                                      .setNeutralButton("Ok , i got it", new DialogInterface.OnClickListener() {
+                                                          @Override
+                                                          public void onClick(DialogInterface dialogInterface, int i) {
+                                                              String msgTryAgain = "When your administrator give You Access,please try again and reconnect !";
+                                                              Toast.makeText(getApplicationContext(),msgTryAgain,Toast.LENGTH_LONG).show();
+                                                          }
+                                                      })
+                                                      .create()
+                                                      .show();
+
+                                 }else { // 0 => Débloquer User Merchant
+                                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                     intent.putExtra("AccessToken", result.getAccessToken());
+                                     //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                     //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                     startActivity(intent);
+                                     Toast.makeText(getApplicationContext(), "Going To Normal ' Users Merchants ' Side", Toast.LENGTH_LONG).show();
+
+                                     //String msg = "Invalid user token! Please login again! not found!  => Only 'Marchants' can access here , please try again";
+                                     //Toast.makeText(LoginActivity.this,msg,Toast.LENGTH_LONG).show();
+                                 }
 
                              }
                          } else {

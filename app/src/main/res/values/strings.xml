@@ -213,6 +213,19 @@
     <string name="phone_number_usermerchant">Phone Number UserMerchant</string>
     <string name="user_name_usermerchant">User Name UserMerchant</string>
     <string name="organization_type_usermerchant">Organization Type UserMerchant</string>
+    <string name="user_merchant_status">User Merchant Status</string>
+    <string name="password_here">Password Here</string>
+    <string name="confirm_password_here">Confirm Password Here</string>
     <!-- Fin : Transactions Search Strings-->
 
+    <!-- Début : Organization Types-->
+    <string name="organizationId_prompt">Choose an organization type </string>
+    <string name="bank_name">Bank Name</string>
+    <string name="bank_of_request">Bank Of Request</string>
+    <string name="username">Username</string>
+    <string-array name="organization_types_array">
+        <item>Merchant</item>
+        <item>Bank</item>
+    </string-array>
+    <!-- Fin : Organization Types-->
 </resources>

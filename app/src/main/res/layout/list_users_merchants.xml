@@ -93,31 +93,44 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/txtView_UserName_UserMerchant"
-            android:text="@string/organization_type_usermerchant" />
+            android:text="@string/organization_type_usermerchant"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/txtView_Status_UserMerchant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txtView_OrganizationType_UserMerchant"
+            android:text="@string/user_merchant_status" />
 
     </RelativeLayout>
 
-    <!--
-
     <ImageView
-        android:id="@+id/img_getExtendedTransactionData"
+        android:id="@+id/img_blockUserMerchant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/pricingSection_GeneralData"
+        android:layout_below="@+id/otherSection_UserMerchant"
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="13dp"
-        app:srcCompat="@drawable/ic_info_black_24dp" />
+        android:layout_marginTop="15dp"
+        app:srcCompat="@drawable/ic_lock_black_24dp" />
 
     <ImageView
-        android:id="@+id/img_getTicket"
+        android:id="@+id/img_removeUserMerchant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/img_blockUserMerchant"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/ic_remove_circle_black_24dp" />
+
+    <ImageView
+        android:id="@+id/img_unblockUserMerchant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/img_getExtendedTransactionData"
+        android:layout_alignTop="@+id/img_blockUserMerchant"
         android:layout_marginStart="20dp"
-        app:srcCompat="@drawable/ic_card_membership_black_24dp" />
-
-    -->
+        app:srcCompat="@drawable/ic_lock_open_black_24dp" />
 
 </RelativeLayout>

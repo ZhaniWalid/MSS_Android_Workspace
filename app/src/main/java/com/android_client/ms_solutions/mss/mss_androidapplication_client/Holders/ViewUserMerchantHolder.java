@@ -11,6 +11,8 @@ import android.widget.TextView;
 public class ViewUserMerchantHolder {
 
     public ImageView imageViewUserMerchant;
-    public TextView textViewFullNameUserMerchant, textViewEmailUserMerchant, textViewPhoneNumbUserMerchant;
-    public TextView textViewUserNameUserMerchant, textViewOrganizationTypeUserMerchant;
+    public TextView  textViewFullNameUserMerchant, textViewEmailUserMerchant, textViewPhoneNumbUserMerchant;
+    public TextView  textViewUserNameUserMerchant, textViewOrganizationTypeUserMerchant;
+    public ImageView imageViewBlockUserMerchant,imageViewUnblockUserMerchant,imageViewDeleteUserMerchant;
+    public TextView  textViewStatus;
 }

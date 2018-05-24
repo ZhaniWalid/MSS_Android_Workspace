@@ -10,9 +10,10 @@ import android.widget.TextView;
 // ViewHolder Class
 public class ViewTransactionHolder {
 
-    public ImageView imageViewBankOfRequest;
+    public ImageView imageViewBankId;
     public TextView textViewIdTransaction, textViewIdMerchant, textViewIdTerminalMerchant;
     public TextView textViewIdHost, textViewAmountAuthorisedNumeric, textViewEtatTransaction;
+    public TextView textViewBankName, textViewBankOfRequest;
     //public FloatingActionButton fabGetExtendedTransactionsData;
     public ImageView imgGetExtendedTransaction;
     public ImageView imgGetTicket;

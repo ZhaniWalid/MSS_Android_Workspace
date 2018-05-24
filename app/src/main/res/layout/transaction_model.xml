@@ -25,7 +25,7 @@
    -->
 
     <ImageView
-        android:id="@+id/imageBankOfRequest_GeneralData"
+        android:id="@+id/imageBankId_GeneralData"
         android:layout_width="100dp"
         android:layout_height="120dp"
         android:layout_marginEnd="10dp"
@@ -35,7 +35,7 @@
         android:id="@+id/infoSection_GeneralData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/imageBankOfRequest_GeneralData"
+        android:layout_toEndOf="@+id/imageBankId_GeneralData"
         android:orientation="vertical">
 
         <TextView

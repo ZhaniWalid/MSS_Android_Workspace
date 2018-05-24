@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_person_black_24dp"
                 android:hint="@string/prompt_username_usr_profile"
-                android:inputType="text"
+                android:inputType="textPersonName"
                 android:enabled="false"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -105,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_person_black_24dp"
                 android:hint="@string/prompt_firstname_usr_profile"
-                android:inputType="textEmailAddress"
+                android:inputType="textPersonName"
                 android:enabled="false"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -127,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_person_black_24dp"
                 android:hint="@string/prompt_lastname_usr_profile"
-                android:inputType="textEmailAddress"
+                android:inputType="textPersonName"
                 android:enabled="false"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -149,7 +149,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_phone_black_24dp"
                 android:hint="@string/prompt_phonenumber_usr_profile"
-                android:inputType="textEmailAddress"
+                android:inputType="text|phone"
                 android:enabled="false"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -322,6 +322,5 @@
         <!-- Fin : Removed inutile -->
 
     </android.support.constraint.ConstraintLayout>
-
 
 </FrameLayout>

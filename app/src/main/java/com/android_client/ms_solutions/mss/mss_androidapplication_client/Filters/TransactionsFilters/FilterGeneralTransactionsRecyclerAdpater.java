@@ -121,7 +121,7 @@ public class FilterGeneralTransactionsRecyclerAdpater extends RecyclerView.Adapt
 
         // Set Image Of Bank Request
         // int imageID = context.getResources().getIdentifier("attijari_bank", "drawable", context.getPackageName());
-        // imageViewBankOfRequest.setImageResource(imageID);
+        // imageViewBankId.setImageResource(imageID);
         //get the image associated with this property
         if (gw_trnsct_generalBindingModel.getBankOfRequest().equals("ATTIJARI")) {
             int imageID = context.getResources().getIdentifier("attijari_bank", "drawable", context.getPackageName());

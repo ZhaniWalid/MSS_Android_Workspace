@@ -8,6 +8,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class AspNetUserBindingModel {
 
+    //
+    @SerializedName("id")
+    public String Id;
+    //
     @SerializedName("firstName")
     public String FirstName;
     @SerializedName("lastName")
@@ -20,6 +24,57 @@ public class AspNetUserBindingModel {
     public String UserName;
     @SerializedName("organizationTypeName")
     public String OrganizationTypeName;
+    //
+    @SerializedName("isBlocked")
+    public int isBlocked; // = 1 => Bloquer User Merchant | = 0 => Débloquer User Merchant
+    //
+    //public String isBlockedToString; // = 1 => Bloquer User Merchant | = 0 => Débloquer User Merchant
+    public String Password;
+    public String ConfirmPassword;
+    public int    Organization_Id;
+    //
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
+    }
+
+    public int getIsBlocked() {
+        return isBlocked;
+    }
+
+    public void setIsBlocked(int isBlocked) {
+        this.isBlocked = isBlocked;
+    }
+
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String password) {
+        Password = password;
+    }
+
+    public String getConfirmPassword() {
+        return ConfirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        ConfirmPassword = confirmPassword;
+    }
+
+    public int getOrganization_Id() {
+        return Organization_Id;
+    }
+
+    public void setOrganization_Id(int organization_Id) {
+        Organization_Id = organization_Id;
+    }
+
+    //
 
     public String getFirstName() {
         return FirstName;

@@ -222,7 +222,11 @@ public class TransactionsFragment extends Fragment {
                                 || List_valuesGeneralTransactionsData.get(i).getEtatTransaction().toLowerCase().trim().contains(
                                 editText_SearchTransactions.getText().toString().toLowerCase().trim())
                                 || List_valuesGeneralTransactionsData.get(i).getIdHost().toLowerCase().trim().contains(
-                                editText_SearchTransactions.getText().toString().toLowerCase().trim())    ) {
+                                editText_SearchTransactions.getText().toString().toLowerCase().trim())
+                                || List_valuesGeneralTransactionsData.get(i).getBankName_GateWay().toLowerCase().trim().contains(
+                                editText_SearchTransactions.getText().toString().toLowerCase().trim())
+                                || List_valuesGeneralTransactionsData.get(i).getBankOfRequest().toLowerCase().trim().contains(
+                                editText_SearchTransactions.getText().toString().toLowerCase().trim())  ) {
 
                             List_valuesGeneralTransactionsData_ForFiltring.add(List_valuesGeneralTransactionsData.get(i));
 
