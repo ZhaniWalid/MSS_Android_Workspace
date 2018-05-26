@@ -223,6 +223,15 @@
     <string name="bank_name">Bank Name</string>
     <string name="bank_of_request">Bank Of Request</string>
     <string name="username">Username</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="your_email_here_for_password_recovery">Your Email Here For Password Recovery</string>
+    <string name="next">Next</string>
+    <string name="your_verification_code_here_for_password_recovery">Your Verification Code Here</string>
+    <string name="back">Back</string>
+    <string name="your_email_for_password_recovery_here">Your Email For Password Recovery Here</string>
+    <string name="your_new_password_for_recovery_here">Your New Password For Recovery Here</string>
+    <string name="your_confirmation_password_for_recovery_here">Your Confirmation Password For Recovery Here</string>
+    <string name="reset_password">Reset Password</string>
     <string-array name="organization_types_array">
         <item>Merchant</item>
         <item>Bank</item>

@@ -222,7 +222,7 @@ public class SettingsScrollViewFragment extends Fragment {
 
         // Validates Password in Login
         if (!StringUtil.isValidPasswordLength(input)) {
-            editTextConfirmNewPassword.setError("Confirm New Password should be between 4 and 15 alphanumeric characters : must contain letters a-zA-Z and at least one digit 0-9");
+            editTextConfirmNewPassword.setError("Confirmation Of New Password should be between 4 and 15 alphanumeric characters : must contain letters a-zA-Z and at least one digit 0-9");
             isValid = false;
         } else {
             editTextConfirmNewPassword.setError(null);
@@ -255,7 +255,7 @@ public class SettingsScrollViewFragment extends Fragment {
     private void emptyFieldsNotAllowed(){
         editTextOldPassword.setError("Old Password Required");
         editTextNewPassword.setError("New Password Required");
-        editTextConfirmNewPassword.setError("Confirm New Password Required");
+        editTextConfirmNewPassword.setError("Confirmation Of New Password Required");
     }
 
     private void isNewPasswordStrong (){
@@ -298,7 +298,7 @@ public class SettingsScrollViewFragment extends Fragment {
             if ( !validateOldPassword(getOldPassword) || !validateNewPassword(getNewPassword) || !validateConfirmNewPassword(getConfirmNewPassword)){
                  Toast.makeText(SettingsScrollViewFragment.this.getContext(),"One or More Fields are incorrect,Please try again and make sure of what you type",Toast.LENGTH_LONG).show();
             }else if (!isTwoPasswordsEquals(getNewPassword,getConfirmNewPassword)){
-                    String msgConfirmFalse = " ' New Password '  &  ' Confirm New Password ' did not match , please Retype Again with same values";
+                    String msgConfirmFalse = " ' New Password '  &  ' Confirmation Of New Password ' did not match , please Retype Again with same values";
                     Toast.makeText(SettingsScrollViewFragment.this.getContext(),msgConfirmFalse,Toast.LENGTH_LONG).show();
                 }else{
                     new ChangePasswordUserMerchantTask().execute();

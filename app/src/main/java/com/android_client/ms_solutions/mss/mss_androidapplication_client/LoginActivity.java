@@ -10,9 +10,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.Spanned;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -38,23 +42,46 @@ public class LoginActivity extends AppCompatActivity {
 
     SampleApi api = SampleApiFactory.getInstance();
     TokenModel tokenModel = null; // n7otha lahné mch louta bsh ntasti beha marra jeya si login = "AdminMonoprix" thezni el activity taa Admin
-                                 // si non thezni el activity commune ta3 'caissier+marchant+magasin'
-                               // w nchouf 7al zeda el fazet 'organizationId = 42 ' 5assa ken bl les 'Marchants'
+    // si non thezni el activity commune ta3 'caissier+marchant+magasin'
+    // w nchouf 7al zeda el fazet 'organizationId = 42 ' 5assa ken bl les 'Marchants'
 
     //Button  btn_login;
-    @BindView(R.id.editTextEmail) EditText _email_UsrName_editTxt;
-    @BindView(R.id.editTextPassword) EditText _pwd_editTxt;
+    @BindView(R.id.editTextEmail)
+    EditText _email_UsrName_editTxt;
+    @BindView(R.id.editTextPassword)
+    EditText _pwd_editTxt;
 
     String email, password;
     // used in changing password to verify typed old password with password in db
     public static String getPassword_StaticInLogin = "";
+
+    // Fields for Forgot Password ? => Reset Password
+
+    // Step 1
+    private EditText editTextEmailForPasswordReset;
+    private String getEmailRecoveryPassword = " ", emailRecoveryPasswordResult = " ";
+    private Button btnEmailRecoveryPassword_Next;
+
+    // Step 2
+    private EditText editTextVerifCodeForPasswordReset;
+    private String getVerifCodeRecoveryPassword = " ", verifCodeRecoveryPasswordResult = " ";
+    private Button btnVerifCodeRecoveryPassword_Next, btnVerifCodeRecoveryPassword_Back;
+
+    // Step 3
+    private EditText editTextEmailForPasswordReset_FinalStep, editTextNewPasswordReset_FinalStep, editTextConfirmPasswordReset_FinalStep;
+    private Button btnResetPassword_Confirmation, btnResetPassword_Back;
+    //private FloatingActionButton fab_activeEmailPasswordReset_FinalStep;
+    private String getEmailRecvPassword_FinalStep = " ",getNewPasswordRecvPassword_FinalStep = " ",getConfirmNewPasswordRecvPassword_FinalStep = " ";
+    private String resetPasswordRecoveryPasswordResult = " ";
+    private String strongPassword = "Strong Password",mediumPassword = "Medium Password",weakPassword = "Weak Password";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // Intent From Home Activity to Login Activity
-       // Intent intent = getIntent();
+        // Intent intent = getIntent();
         //setContentView(R.layout.activity_login);
 
         /* we do like this or like the new other method with the annotation :
@@ -144,6 +171,361 @@ public class LoginActivity extends AppCompatActivity {
    // fin Register() Method
 
    */
+
+    // ForgetPassword() method
+    @Click(R.id.buttonForgotPassword)
+    public void ForgetPassword() {
+        EmailRecoveryPasswordResetUI();
+    }
+
+    // Step 1
+    private void EmailRecoveryPasswordResetUI() {
+
+        LayoutInflater inflater = LayoutInflater.from(LoginActivity.this);
+        View subView = inflater.inflate(R.layout.reset_password_email_ui, null);
+
+        editTextEmailForPasswordReset = subView.findViewById(R.id.editTxtEmailPwdRecovery);
+        btnEmailRecoveryPassword_Next = subView.findViewById(R.id.btn_emailPwdRcvry_toStep2);
+
+        btnEmailRecoveryPassword_Next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EmailRecoveryValidation();
+            }
+        });
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+        builder.setTitle("Step 1 : Email For Password Recovery");
+        builder.setIcon(LoginActivity.this.getResources().getDrawable(R.drawable.ic_mail_black_24dp));
+        builder.setView(subView);
+        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialogInterface) {
+                LoginActivity_.intent(LoginActivity.this).start();
+                Toast.makeText(LoginActivity.this, "Password Recovery Step 1 with Email : Canceled", Toast.LENGTH_LONG).show();
+            }
+        });
+        builder.create();
+        builder.show();
+    }
+
+    private boolean isEmailAddressValid(String email) {
+        boolean isValid;
+
+        if (!StringUtil.isEmailAddress(email)) {
+            String msgEmailError = "Email Invalid,Should be in this form : ' example@domain.com ' ";
+            editTextEmailForPasswordReset.setError(msgEmailError);
+            isValid = false;
+        } else {
+            editTextEmailForPasswordReset.setError(null);
+            isValid = true;
+        }
+
+        return isValid;
+    }
+
+    private void getEmailFieldValue() {
+        getEmailRecoveryPassword = editTextEmailForPasswordReset.getText().toString();
+    }
+
+    private void emptyEmailNotAllowed(){
+        editTextEmailForPasswordReset.setError("Email Required");
+    }
+
+    private void whenEmailIsNotExist(){
+        editTextEmailForPasswordReset.setError("User Not Found : Email does not exist in our data base ");
+    }
+
+    private void EmailRecoveryValidation() {
+
+        getEmailFieldValue();
+
+      if(!StringUtil.isNullOrWhitespace(getEmailRecoveryPassword)){
+          if (!isEmailAddressValid(getEmailRecoveryPassword)) {
+              Toast.makeText(LoginActivity.this, "Email Address Not Valid,Please Verify your input ", Toast.LENGTH_LONG).show();
+          } else {
+              new EmailVerificationPasswordResetTask().execute();
+              //Toast.makeText(LoginActivity.this,"Password Recovery Step 1 with Email : Accepted",Toast.LENGTH_LONG).show();
+          }
+      }else{
+          emptyEmailNotAllowed();
+          Toast.makeText(LoginActivity.this, "Email Address Not Valid,Please Verify your input ", Toast.LENGTH_LONG).show();
+      }
+
+    }
+
+    //Step 2
+    private void VerificationCodePasswordResetUI() {
+
+        LayoutInflater inflater = LayoutInflater.from(LoginActivity.this);
+        View subView = inflater.inflate(R.layout.reset_password_verification_code_ui, null);
+
+        editTextVerifCodeForPasswordReset = subView.findViewById(R.id.editTxtVerifCodePwdRecovery);
+        btnVerifCodeRecoveryPassword_Next = subView.findViewById(R.id.btn_VerifCodePwdRcvry_toStep3);
+        btnVerifCodeRecoveryPassword_Back = subView.findViewById(R.id.btn_VerifCodePwdRcvry_toStep1);
+
+        btnVerifCodeRecoveryPassword_Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EmailRecoveryPasswordResetUI();
+            }
+        });
+
+        btnVerifCodeRecoveryPassword_Next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                VerifCodeRecoveryVerification();
+            }
+        });
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+        builder.setTitle("Step 2 : Verification Code For Password Recovery");
+        builder.setIcon(LoginActivity.this.getResources().getDrawable(R.drawable.ic_euro_symbol_black_24dp));
+        builder.setView(subView);
+        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialogInterface) {
+                LoginActivity_.intent(LoginActivity.this).start();
+                Toast.makeText(LoginActivity.this, "Password Recovery Step 2 with Verification Code : Canceled", Toast.LENGTH_LONG).show();
+            }
+        });
+        builder.create();
+        builder.show();
+    }
+
+    private void VerifCodeRecoveryVerification() {
+
+        getVerifCodeFieldValue();
+
+        if(!StringUtil.isNullOrWhitespace(getVerifCodeRecoveryPassword)){
+            new CodeVerificationPasswordResetTask().execute();
+        }else{
+            emptyVerifCodeNotAllowed();
+            Toast.makeText(LoginActivity.this, "Verification Code Not Valid,Please Verify your input ", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void getVerifCodeFieldValue() {
+        getVerifCodeRecoveryPassword = editTextVerifCodeForPasswordReset.getText().toString();
+    }
+
+    private void emptyVerifCodeNotAllowed(){
+        editTextVerifCodeForPasswordReset.setError("Verification Code is Required");
+    }
+
+    private void whenVerifCodeIsFalse() {
+        String msgError = "Invalid Verification Code,please verify your last Verification Code received in your email !";
+        editTextVerifCodeForPasswordReset.setError(msgError);
+    }
+
+    // Step 3
+    private void RecoveryPasswordResetFinalStepUI(){
+
+        LayoutInflater inflater = LayoutInflater.from(LoginActivity.this);
+        View subView = inflater.inflate(R.layout.reset_password_final_step_ui, null);
+
+        editTextEmailForPasswordReset_FinalStep = subView.findViewById(R.id.editTxtEmailPwdRecovery_FinalStep);
+        editTextNewPasswordReset_FinalStep = subView.findViewById(R.id.editTxtNewPwdRecovery_FinalStep);
+        editTextConfirmPasswordReset_FinalStep = subView.findViewById(R.id.editTxtConfirmNewPwdRecovery_FinalStep);
+
+        btnResetPassword_Back = subView.findViewById(R.id.btn_BackPwdRcvry_toStep2);
+        btnResetPassword_Confirmation = subView.findViewById(R.id.btn_ConfirmPwdRcvry_finalStep);
+
+        /*
+
+        fab_activeEmailPasswordReset_FinalStep = subView.findViewById(R.id.fab_activeEmailPwdRcvry_finalStep);
+
+        fab_activeEmailPasswordReset_FinalStep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                enableEmailInFinalStep();
+            }
+        });
+
+        */
+
+        SetEmailPasswordRecovery_afterView();
+
+        btnResetPassword_Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                VerificationCodePasswordResetUI();
+            }
+        });
+
+        editTextNewPasswordReset_FinalStep.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if(hasFocus){
+                    isNewPasswordStrong();
+                }
+            }
+        });
+
+        editTextConfirmPasswordReset_FinalStep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                isConfirmNewPasswordStrong();
+            }
+        });
+
+        btnResetPassword_Confirmation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ResetPassword();
+            }
+        });
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+        builder.setTitle("Step 3 : Reset Password Recovery");
+        builder.setIcon(LoginActivity.this.getResources().getDrawable(R.drawable.ic_lock_black_24dp));
+        builder.setView(subView);
+        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialogInterface) {
+                LoginActivity_.intent(LoginActivity.this).start();
+                Toast.makeText(LoginActivity.this, "Password Recovery Step 3 (final step) : Canceled", Toast.LENGTH_LONG).show();
+            }
+        });
+        builder.create();
+        builder.show();
+
+    }
+
+    /*
+    private void enableEmailInFinalStep(){
+      editTextEmailForPasswordReset_FinalStep.setEnabled(true);
+    }
+    */
+
+    private void SetEmailPasswordRecovery_afterView(){
+
+        // Set The email field in final step disabled and put in it the value of email accepted in Step1
+        editTextEmailForPasswordReset_FinalStep.setText(getEmailRecoveryPassword);
+        editTextEmailForPasswordReset_FinalStep.setTextColor(getResources().getColor(R.color.black));
+    }
+
+    private void getResetPasswordValues(){
+
+        // Get values of email , new password and confirmation of new password
+        getEmailRecvPassword_FinalStep = editTextEmailForPasswordReset_FinalStep.getText().toString();
+        getNewPasswordRecvPassword_FinalStep = editTextNewPasswordReset_FinalStep.getText().toString();
+        getConfirmNewPasswordRecvPassword_FinalStep = editTextConfirmPasswordReset_FinalStep.getText().toString();
+    }
+
+    private void emptyRestPasswordsFieldsNotAllowed(){
+
+        //editTextEmailForPasswordReset_FinalStep.setError("Email is Required");
+        editTextNewPasswordReset_FinalStep.setError("New Password is Required");
+        editTextConfirmPasswordReset_FinalStep.setError("Confirmation Of New Password is Required");
+    }
+
+    private boolean validateNewPassword(String input) {
+        boolean isValid;
+
+        // Validates Password in Login
+        if (!StringUtil.isValidPasswordLength(input)) {
+            editTextNewPasswordReset_FinalStep.setError("New Password should be between 4 and 15 alphanumeric characters : must contain letters a-z A-Z and at least one digit 0-9 ");
+            isValid = false;
+        } else {
+            editTextNewPasswordReset_FinalStep.setError(null);
+            isValid = true;
+        }
+
+        return isValid;
+    }
+
+    private boolean validateConfirmNewPassword(String input) {
+        boolean isValid;
+
+        // Validates Password in Login
+        if (!StringUtil.isValidPasswordLength(input)) {
+            editTextConfirmPasswordReset_FinalStep.setError("Confirmation Of New Password should be between 4 and 15 alphanumeric characters : must contain letters a-z A-Z and at least one digit 0-9");
+            isValid = false;
+        } else {
+            editTextConfirmPasswordReset_FinalStep.setError(null);
+            isValid = true;
+        }
+
+        return isValid;
+    }
+
+    private boolean isTwoPasswordsEquals(String newPassword,String confirmNewPassword){
+        boolean isValid;
+
+        if (!StringUtil.isPasswordsConfirmedEquals(newPassword,confirmNewPassword)){
+            isValid = false;
+        }else {
+            isValid = true;
+        }
+
+        return isValid;
+    }
+
+    private void isNewPasswordStrong (){
+
+        if (StringUtil.passwordStrength(getNewPasswordRecvPassword_FinalStep).equals("StrongPassword")){
+            editTextNewPasswordReset_FinalStep.setError(strongPassword);
+            editTextNewPasswordReset_FinalStep.setBackgroundColor(getResources().getColor(R.color.green));
+            //editTextNewPassword.setBackgroundColor(Color.parseColor("#7FFF00"));
+        }else if (StringUtil.passwordStrength(getNewPasswordRecvPassword_FinalStep).equals("MediumPassword")) {
+            editTextNewPasswordReset_FinalStep.setError(mediumPassword);
+            editTextNewPasswordReset_FinalStep.setBackgroundColor(getResources().getColor(R.color.orange));
+            //editTextNewPassword.setBackgroundColor(Color.parseColor("#FFA500"));
+        }else{
+            editTextNewPasswordReset_FinalStep.setError(weakPassword);
+            editTextNewPasswordReset_FinalStep.setBackgroundColor(getResources().getColor(R.color.red));
+            //editTextNewPassword.setBackgroundColor(Color.parseColor("#FF0000"));
+        }
+    }
+
+    private void isConfirmNewPasswordStrong (){
+
+        if (StringUtil.passwordStrength(getConfirmNewPasswordRecvPassword_FinalStep).equals("StrongPassword")){
+            editTextConfirmPasswordReset_FinalStep.setError(strongPassword);
+            editTextConfirmPasswordReset_FinalStep.setBackgroundColor(getResources().getColor(R.color.green));
+        }else if (StringUtil.passwordStrength(getConfirmNewPasswordRecvPassword_FinalStep).equals("MediumPassword")) {
+            editTextConfirmPasswordReset_FinalStep.setError(mediumPassword);
+            editTextConfirmPasswordReset_FinalStep.setBackgroundColor(getResources().getColor(R.color.orange));
+        }else{
+            editTextConfirmPasswordReset_FinalStep.setError(weakPassword);
+            editTextConfirmPasswordReset_FinalStep.setBackgroundColor(getResources().getColor(R.color.red));
+        }
+    }
+
+    private void failedResetPassword(){
+
+        String msgNewPwdError =
+                "1. Password must have at least one non letter or digit character \r\n" +
+                        "2. Password must have at least one uppercase ('A'-'Z').";
+        editTextNewPasswordReset_FinalStep.setError(msgNewPwdError);
+
+        String msgConfirmNewPwdError =
+                "1. Password must have at least one non letter or digit character \r\n" +
+                        "2. Password must have at least one uppercase ('A'-'Z').";
+        editTextConfirmPasswordReset_FinalStep.setError(msgConfirmNewPwdError);
+    }
+
+    private void ResetPassword(){
+
+        getResetPasswordValues();
+
+        if (   !StringUtil.isNullOrWhitespace(getNewPasswordRecvPassword_FinalStep)
+            || !StringUtil.isNullOrWhitespace(getConfirmNewPasswordRecvPassword_FinalStep) ){
+
+            if(!validateNewPassword(getNewPasswordRecvPassword_FinalStep) || !validateConfirmNewPassword(getConfirmNewPasswordRecvPassword_FinalStep)){
+                Toast.makeText(LoginActivity.this,"One or More Fields are incorrect,Please try again and make sure of what you type",Toast.LENGTH_LONG).show();
+            }else if(!isTwoPasswordsEquals(getNewPasswordRecvPassword_FinalStep,getConfirmNewPasswordRecvPassword_FinalStep)){
+                String msgConfirmPwdFalse = " ' New Password '  &  ' Confirmation Of New Password ' did not match , please Retype Again with same values";
+                Toast.makeText(LoginActivity.this,msgConfirmPwdFalse,Toast.LENGTH_LONG).show();
+            }else{
+                new ResetPasswordTask().execute();
+            }
+        }else{
+            emptyRestPasswordsFieldsNotAllowed();
+            Toast.makeText(LoginActivity.this,"All Fields Are Required , You Can't left empty fields",Toast.LENGTH_LONG).show();
+        }
+    }
 
     // Login() Method
     @Click(R.id.buttonLogin)
@@ -357,6 +739,160 @@ public class LoginActivity extends AppCompatActivity {
     }
     // fin Login AsyncTask Part
 
+    // Class EmailVerificationPasswordResetTask
+    class EmailVerificationPasswordResetTask extends AsyncTask<String, String, String>{
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            params = new String[1];
+
+            params[0] = getEmailRecoveryPassword;
+
+            try {
+                emailRecoveryPasswordResult = api.ForgotPassword(params[0]).execute().body();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return emailRecoveryPasswordResult;
+        }
+
+        @Override
+        protected void onPostExecute(String string) {
+
+
+         switch (emailRecoveryPasswordResult){
+
+           case "Link_ResetPassword_HasBeenSent_ToTheUser":
+             AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+             builder.setTitle("Email Confirmed !");
+             String msg = "Your Email is confirmed,an email has been sent to you with your ' Verification Code' , use it in the next step";
+             builder.setMessage(msg);
+             builder.setIcon(LoginActivity.this.getResources().getDrawable(R.drawable.ic_info_black_24dp));
+             builder.setNeutralButton("Ok,i got it : to the next step", new DialogInterface.OnClickListener() {
+                 @Override
+                 public void onClick(DialogInterface dialogInterface, int i) {
+                     VerificationCodePasswordResetUI();
+                     Toast.makeText(LoginActivity.this,"Password Recovery Step 1 with Email : Accepted ,View your email",Toast.LENGTH_LONG).show();
+                 }
+             });
+             builder.create();
+             builder.show();
+           break;
+
+           case "Error404_UserNotFound_ByEmailAsync":
+             whenEmailIsNotExist();
+             Toast.makeText(LoginActivity.this,"User Not Found : Email not found in our data Base,please verify your email",Toast.LENGTH_LONG).show();
+           break;
+         }
+
+            super.onPostExecute(string);
+        }
+    }
+
+    // CodeVerificationPasswordResetTask
+    class CodeVerificationPasswordResetTask extends AsyncTask<String, String, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            params = new String[1];
+
+            params[0] = getVerifCodeRecoveryPassword;
+
+            try {
+                verifCodeRecoveryPasswordResult = api.VerificationCode(params[0]).execute().body();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return verifCodeRecoveryPasswordResult;
+        }
+
+        @Override
+        protected void onPostExecute(String string) {
+
+            if(verifCodeRecoveryPasswordResult.equals("VerificationCode_Successfully_Verified")){
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                builder.setTitle("Verification Code Confirmed !");
+                String msg = "Your Verification Code is confirmed,this let you to go to the final step";
+                builder.setMessage(msg);
+                builder.setIcon(LoginActivity.this.getResources().getDrawable(R.drawable.ic_info_black_24dp));
+                builder.setNeutralButton("Ok,i got it : to the final step", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        RecoveryPasswordResetFinalStepUI();
+                        Toast.makeText(LoginActivity.this,"Password Recovery Step 2 with Verification Code : Accepted,we are going to the final step",Toast.LENGTH_LONG).show();
+                    }
+                });
+                builder.create();
+                builder.show();
+
+            }else {
+                whenVerifCodeIsFalse();
+                Toast.makeText(LoginActivity.this,"Invalid Verification Code",Toast.LENGTH_LONG).show();
+            }
+            super.onPostExecute(string);
+        }
+    }
+
+    // ResetPasswordTask
+    class ResetPasswordTask extends AsyncTask<String, String, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            params = new String[4];
+
+            for (int i=0;i<params.length;i++){
+
+                params[0] = getEmailRecvPassword_FinalStep;
+                params[1] = getNewPasswordRecvPassword_FinalStep;
+                params[2] = getConfirmNewPasswordRecvPassword_FinalStep;
+            }
+
+            try {
+                resetPasswordRecoveryPasswordResult = api.ResetPassword(params[0],params[1],params[2]).execute().body();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return resetPasswordRecoveryPasswordResult;
+        }
+
+        @Override
+        protected void onPostExecute(String string) {
+
+            if (resetPasswordRecoveryPasswordResult.equals("Congratulations_ResetPassword_HaveBeen_Succeedded => View your Email !")){
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                builder.setTitle("Password Reset Succeeded !");
+                String msg = "Your Password is Resetted Successfully,please check your email for new changes!";
+                builder.setMessage(msg);
+                builder.setIcon(LoginActivity.this.getResources().getDrawable(R.drawable.ic_info_black_24dp));
+                builder.setNeutralButton("Ok,i got it : close this window", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                     LoginActivity_.intent(LoginActivity.this).start();
+                     Toast.makeText(LoginActivity.this,"Password Recovery Step 3 (final) : Password has been Resetted Successfully,please check your email for new changes!",Toast.LENGTH_LONG).show();
+                    }
+                });
+                builder.create();
+                builder.show();
+            }else{
+                failedResetPassword();
+                String msgFailedResult = "Update password failed for some reasons like : \r\n" +
+                        "1. Passwords must have at least one non letter or digit character \r\n" +
+                        "2. Passwords must have at least one uppercase ('A'-'Z') \r\n" +
+                        "3. Email Problem : Same Email used with other user ( Absurde )";
+                Toast.makeText(LoginActivity.this,msgFailedResult,Toast.LENGTH_LONG).show();
+                //Toast.makeText(LoginActivity.this,"Error , please verify your inputs",Toast.LENGTH_LONG).show();
+            }
+            super.onPostExecute(string);
+        }
+    }
 
  /*
     // Registration AsyncTask Part

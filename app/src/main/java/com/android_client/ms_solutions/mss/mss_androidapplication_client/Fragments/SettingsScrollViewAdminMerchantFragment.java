@@ -219,7 +219,7 @@ public class SettingsScrollViewAdminMerchantFragment extends Fragment {
 
         // Validates Password in Login
         if (!StringUtil.isValidPasswordLength(input)) {
-            editTextConfirmNewPassword.setError("Confirm New Password should be between 4 and 15 alphanumeric characters : must contain letters a-z A-Z and at least one digit 0-9");
+            editTextConfirmNewPassword.setError("Confirmation Of New Password should be between 4 and 15 alphanumeric characters : must contain letters a-z A-Z and at least one digit 0-9");
             isValid = false;
         } else {
             editTextConfirmNewPassword.setError(null);
@@ -252,7 +252,7 @@ public class SettingsScrollViewAdminMerchantFragment extends Fragment {
     private void emptyFieldsNotAllowed(){
         editTextOldPassword.setError("Old Password Required");
         editTextNewPassword.setError("New Password Required");
-        editTextConfirmNewPassword.setError("Confirmation New Password Required");
+        editTextConfirmNewPassword.setError("Confirmation Of New Password Required");
     }
 
     private void isNewPasswordStrong (){
@@ -295,7 +295,7 @@ public class SettingsScrollViewAdminMerchantFragment extends Fragment {
             if ( !validateOldPassword(getOldPassword) || !validateNewPassword(getNewPassword) || !validateConfirmNewPassword(getConfirmNewPassword)){
                 Toast.makeText(SettingsScrollViewAdminMerchantFragment.this.getContext(),"One or More Fields are incorrect,Please try again and make sure of what you type",Toast.LENGTH_LONG).show();
             }else if (!isTwoPasswordsEquals(getNewPassword,getConfirmNewPassword)){
-                String msgConfirmPwdFalse = " ' New Password '  &  ' Confirmation New Password ' did not match , please Retype Again with same values";
+                String msgConfirmPwdFalse = " ' New Password '  &  ' Confirmation Of New Password ' did not match , please Retype Again with same values";
                 Toast.makeText(SettingsScrollViewAdminMerchantFragment.this.getContext(),msgConfirmPwdFalse,Toast.LENGTH_LONG).show();
             }else{
                 new ChangePasswordAdminMerchantTask().execute();

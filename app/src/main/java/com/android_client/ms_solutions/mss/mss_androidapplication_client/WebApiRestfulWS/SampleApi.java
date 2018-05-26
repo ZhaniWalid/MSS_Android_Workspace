@@ -46,6 +46,14 @@ public interface SampleApi {
     @POST("api/User/CreateUserMerchantByAdminMerchant")
     Call<String> CreateUserMerchant(@Field("FirstName") String FirstName,@Field("LastName") String LastName,@Field("Email") String Email,@Field("Password") String Password,@Field("ConfirmPassword") String ConfirmPassword,@Field("PhoneNumber") String PhoneNumber,@Field("UserName") String UserName,@Field("Organization_Id") int Organization_Id);
 
+    @FormUrlEncoded
+    @POST("api/User/ForgotPassword")
+    Call<String> ForgotPassword(@Field("Email_ForgetPwd") String Email_ForgetPwd);
+
+    @FormUrlEncoded
+    @POST("api/User/VerificationCode")
+    Call<String> VerificationCode(@Field("VerificationCode") String VerificationCode);
+
     // PATCH ( Updates ) Parts
     @FormUrlEncoded
     @PATCH("api/User/PatchProfileUser")
@@ -60,6 +68,10 @@ public interface SampleApi {
 
     @PATCH("api/User/UnblockUserMerchantByAdminMerchant/{idUserMerchantToUnblock}")
     Call<String> UnblockUserMerchant(@Query("idUserMerchantToUnblock") String idUserMerchantToUnblock);
+
+    @FormUrlEncoded
+    @PATCH("api/User/ResetPassword")
+    Call<String> ResetPassword(@Field("Email_ResetPwd") String Email_ResetPwd,@Field("Password_ResetPwd") String Password_ResetPwd,@Field("ConfirmPassword_ResetPwd") String ConfirmPassword_ResetPwd);
 
    // @GET("api/User/GetExtendedFiltrableTransactions")
    // Call<List<gw_trnsct_ExtendedBindingModel>> GetExtendedTransactionsData();

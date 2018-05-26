@@ -26,6 +26,7 @@
     <color name="base">#AAAAAA</color>
     <color name="iron">#CCCCCC</color>
     <color name="white">#FFFFFF</color>
+    <color name="white_eclair">#FAFAFA</color>
     <!-- End Of : Another Colors from Another tuto to do "the waiting process" -->
 
     <!-- End of specifics colors for "beautiful login"-->
@@ -63,6 +64,8 @@
     <!-- Fin : Colors for List View of Users Management -->
 
     <!-- Other Colors by me-->
+    <color name="green_foncee">#4CAF50</color>
+    <color name="green_">#00E676</color>
     <color name="green">#7FFF00</color>
     <color name="orange">#FFA500</color>
     <color name="red">#FF0000</color>
