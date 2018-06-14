@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/actionToggleValues"
+        android:title="@string/toggle_y_values">
+    </item>
+    <item
+        android:id="@+id/actionToggleIcons"
+        android:title="@string/toggle_icons">
+    </item>
+    <item
+        android:id="@+id/actionToggleXVals"
+        android:title="@string/toggle_x_values">
+    </item>
+    <item
+        android:id="@+id/actionTogglePercent"
+        android:title="@string/toggle_percent">
+    </item>
+    <item
+        android:id="@+id/actionToggleHole"
+        android:title="@string/toggle_hole">
+    </item>
+    <item
+        android:id="@+id/animateX"
+        android:title="@string/animate_x">
+    </item>
+    <item
+        android:id="@+id/animateY"
+        android:title="@string/animate_y">
+    </item>
+    <item
+        android:id="@+id/animateXY"
+        android:title="@string/animate_xy">
+    </item>
+    <item
+        android:id="@+id/actionDrawCenter"
+        android:title="@string/draw_centertext">
+    </item>
+    <item
+        android:id="@+id/actionSave"
+        android:title="@string/save_to_gallery">
+    </item>
+    <item
+        android:id="@+id/actionToggleSpin"
+        android:title="@string/spin_animation">
+    </item>
+
+</menu>

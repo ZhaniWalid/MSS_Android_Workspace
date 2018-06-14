@@ -25,6 +25,7 @@ import com.android_client.ms_solutions.mss.mss_androidapplication_client.Canvas.
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Fragments.HomeFragment;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Fragments.NotificationsFragment;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Fragments.ProfileAdminMarchantFragment;
+import com.android_client.ms_solutions.mss.mss_androidapplication_client.Fragments.ReportingStatisticsFragment;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Fragments.SettingsScrollViewAdminMerchantFragment;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Fragments.UserManagementFragment;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Fragments.TransactionsFragment;
@@ -79,6 +80,7 @@ public class HomeAdminMarchantActivity extends AppCompatActivity
     private static final String TAG_SETTINGS = "Settings";
     private static final String TAG_PPROFILE= "Profile";
     private static final String TAG_TRANSACTIONS= "Transactions";
+    private static final String TAG_REPORTING= "Reporting And Statistics";
     public static String CURRENT_TAG = TAG_HOME;
 
     // toolbar titles respected to selected nav menu item
@@ -235,15 +237,18 @@ public class HomeAdminMarchantActivity extends AppCompatActivity
         } else if (id == R.id.nav_transactions_mss_admin) {
             navItemIndex = 2;
             CURRENT_TAG = TAG_TRANSACTIONS;
-        } else if (id == R.id.nav_profile_user_mss_admin){
+        } else if (id == R.id.nav_reporting_mss_admin){
             navItemIndex = 3;
+            CURRENT_TAG = TAG_REPORTING;
+        } else if (id == R.id.nav_profile_user_mss_admin){
+            navItemIndex = 4;
             CURRENT_TAG = TAG_PPROFILE;
             //setImageForUserProfile();
         } else if (id == R.id.nav_manage_mss_admin){
-            navItemIndex = 4;
+            navItemIndex = 5;
             CURRENT_TAG = TAG_USERS_MANAGEMENT;
         } else if (id == R.id.nav_settings_mss_admin){
-            navItemIndex = 5;
+            navItemIndex = 6;
             CURRENT_TAG = TAG_SETTINGS;
             // settings activity
             /*Intent intent = new Intent(HomeAdminMarchantActivity.this,SettingsActivity.class);
@@ -372,14 +377,18 @@ public class HomeAdminMarchantActivity extends AppCompatActivity
                 TransactionsFragment transactionsFragment = new TransactionsFragment();
                 return transactionsFragment;
             case 3:
+                // Reporting & Statistics fragment
+                ReportingStatisticsFragment reportingStatisticsFragment = new ReportingStatisticsFragment();
+                return reportingStatisticsFragment;
+            case 4:
                 // Profile 'Admin Marchant' fragment
                 ProfileAdminMarchantFragment profileAdminMarchantFragment = new ProfileAdminMarchantFragment();
                 return profileAdminMarchantFragment;
-            case 4:
+            case 5:
                // Users Management fragment
                UserManagementFragment userManagementFragment = new UserManagementFragment();
                return userManagementFragment;
-            case 5:
+            case 6:
                 // settings fragment
                 SettingsScrollViewAdminMerchantFragment settingsScrollViewAdminMerchantFragment = new SettingsScrollViewAdminMerchantFragment();
                 return settingsScrollViewAdminMerchantFragment;

@@ -47,6 +47,7 @@
         <item>Home</item>
         <item>Notifications</item>
         <item>Transactions</item>
+        <item>Reporting And Statistics</item>
         <item>Profile</item>
         <item>Users Management</item>
         <item>Settings</item>
@@ -232,9 +233,38 @@
     <string name="your_new_password_for_recovery_here">Your New Password For Recovery Here</string>
     <string name="your_confirmation_password_for_recovery_here">Your Confirmation Password For Recovery Here</string>
     <string name="reset_password">Reset Password</string>
+    <string name="reporting_and_statistics">Reporting And Statistics</string>
+    <string name="reporting_type_name">Reporting Type Name</string>
+    <string name="_500">500</string>
     <string-array name="organization_types_array">
         <item>Merchant</item>
         <item>Bank</item>
     </string-array>
     <!-- Fin : Organization Types-->
+
+    <!-- Début : Transactions Status Charts Types -->
+    <string-array name="transactions_status_types_array">
+        <item>Pie Chart</item>
+        <item>Line Chart</item>
+        <item>Bar Chart</item>
+    </string-array>
+    <string name="prompt_transactions_status_types">Please Select A Chart</string>
+    <string name="pie_chart">Pie Chart</string>
+    <string name="bar_chart">Bar Chart</string>
+    <string name="show_report">Show Report</string>
+    <string name="toggle_y_values">Toggle Y-Values</string>
+    <string name="toggle_icons">Toggle Icons</string>
+    <string name="toggle_x_values">Toggle X-Values</string>
+    <string name="toggle_percent">Toggle Percent</string>
+    <string name="toggle_hole">Toggle Hole</string>
+    <string name="animate_x">Animate X</string>
+    <string name="animate_y">Animate Y</string>
+    <string name="animate_xy">Animate XY</string>
+    <string name="draw_centertext">Draw CenterText</string>
+    <string name="save_to_gallery">Save to Gallery</string>
+    <string name="spin_animation">Spin Animation</string>
+    <string name="horizontal_bar_chart">Horizontal Bar Chart</string>
+    <!-- Fin : Transactions Status Charts Types -->
+
+
 </resources>

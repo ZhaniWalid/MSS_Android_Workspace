@@ -138,7 +138,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void afterViews() {
         //Long currentTimeStampe = (System.currentTimeMillis()/1000);
         //String email = currentTimeStampe.toString()+ "@mail.com";
-        String email = "CaisseMonoprix";
+        String email = "AdminMonoprix";
         String passwd = "Azerty12345+";
         editTextEmail.setText(email);
         editTextPassword.setText(passwd);

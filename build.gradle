@@ -19,6 +19,9 @@ allprojects {
     repositories {
         google()
         jcenter()
+        /* (Added by me ) Début : URL for Reporting Charts, liée au Library : MPAndroidChart in build.gradle(Module:app)*/
+        maven { url 'https://jitpack.io' }
+        /* (Added by me ) Fin :  URL for Reporting Charts, liée au Library : MPAndroidChart in build.gradle(Module:app)*/
     }
 }
 

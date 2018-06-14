@@ -1,0 +1,48 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.android_client.ms_solutions.mss.mss_androidapplication_client.Fragments.HorizontalBarChartCardBinLabelsFragment">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent"
+        android:background="@color/iron">
+
+        <com.github.mikephil.charting.charts.HorizontalBarChart
+            android:id="@+id/HorizBarchartCardBin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/seekBarHorizBarchartCardBin2"
+            android:layout_marginTop="30dp" />
+
+        <SeekBar
+            android:id="@+id/seekBarHorizBarchartCardBin2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="8dp"
+            android:layout_toStartOf="@+id/tvYMaxHorizBarchartCardBin"
+            android:layout_marginEnd="5dp"
+            android:max="200"
+            android:paddingBottom="12dp" />
+
+        <TextView
+            android:id="@+id/tvYMaxHorizBarchartCardBin"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/seekBarHorizBarchartCardBin2"
+            android:layout_alignParentEnd="true"
+            android:text="@string/_500"
+            android:layout_marginBottom="15dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            tools:ignore="RtlHardcoded" />
+
+    </RelativeLayout>
+
+
+</FrameLayout>

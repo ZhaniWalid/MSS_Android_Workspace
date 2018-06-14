@@ -93,7 +93,6 @@
 
     </RelativeLayout>
 
-
     <RelativeLayout
         android:id="@+id/bankingSection_GeneralData"
         android:layout_width="match_parent"

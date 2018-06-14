@@ -34,6 +34,11 @@
             android:title="@string/transactions" />
 
         <item
+            android:id="@+id/nav_reporting_mss_admin"
+            android:icon="@drawable/ic_card_membership_black_24dp"
+            android:title="@string/reporting_and_statistics" />
+
+        <item
             android:id="@+id/nav_profile_user_mss_admin"
             android:icon="@drawable/ic_account_circle_black_24dp_v21"
             android:title="@string/profile" />

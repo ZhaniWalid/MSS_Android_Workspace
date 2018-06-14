@@ -5,6 +5,10 @@ package com.android_client.ms_solutions.mss.mss_androidapplication_client.WebApi
  */
 
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.AspNetUserBindingModel;
+import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.gw_BankOfPayementBindingModel;
+import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.gw_BinCardBindingModel;
+import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.gw_MerchantTypeTransactionBindingModel;
+import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.gw_TransactionStatusBindingModel;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.gw_trnsct_ExtendedBindingModel;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.gw_trnsct_GeneralBindingModel;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.RegisterBindingModel;
@@ -100,6 +104,18 @@ public interface SampleApi {
 
     @GET("api/User/GetUsersMerchants")
     Call<List<AspNetUserBindingModel>> GetOnlyAllUsersMerchants();
+
+    @GET("api/User/ReportingStatusTransactions")
+    Call<List<gw_TransactionStatusBindingModel>>  GetOnlyTransactionsStatus();
+
+    @GET("api/User/ReportingMerchantTypeTransactions")
+    Call<List<gw_MerchantTypeTransactionBindingModel>>  GetOnlyMerchantTypes();
+
+    @GET("api/User/ReportingCardBinLabels")
+    Call<List<gw_BinCardBindingModel>>  GetOnlyBinCardsLabels();
+
+    @GET("api/User/ReportingBankOfPayement")
+    Call<List<gw_BankOfPayementBindingModel>> GetOnlyBankNamesOfPayment();
 
     // DELETE Parts
     @DELETE("api/User/DeleteUserMerchantByAdminMerchant/{idUserMerchantToDelete}")

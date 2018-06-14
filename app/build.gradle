@@ -60,4 +60,8 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:26.1.0'
     /* (Added by me ) Fin : Recycler view for the search*/
 
+    /* (Added by me ) Début : Library for Reporting Charts */
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+    /* (Added by me ) Fin :  Library for Reporting Charts */
+
 }
