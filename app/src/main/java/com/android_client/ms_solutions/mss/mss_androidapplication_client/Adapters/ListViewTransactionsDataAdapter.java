@@ -132,6 +132,7 @@ public class ListViewTransactionsDataAdapter extends BaseAdapter {
         return view;
     }
 
+    @SuppressLint("SetTextI18n")
     private void afterViewsGeneralTransactionsData(int position) {
 
         // Info Section
@@ -330,6 +331,7 @@ public class ListViewTransactionsDataAdapter extends BaseAdapter {
 
     }
 
+    @SuppressLint("SetTextI18n")
     private void afterViewsGetTicket(gw_trnsct_GeneralBindingModel gw_trnsct_generalBindingModel){
 
         LayoutInflater inflater = LayoutInflater.from(mContext);

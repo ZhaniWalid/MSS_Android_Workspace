@@ -73,4 +73,13 @@
     <color name="blue_grey">#455A64</color>
     <!-- Fin Other Colors by me-->
 
+    <!-- Début : Color of News Feed -->
+    <color name="colorPrimary_NewsFeed">#f2b632</color>
+    <color name="colorPrimaryDark_NewsFeed">#22264b</color>
+    <color name="colorAccent_NewsFeed">#FF4081</color>
+    <color name="bg_color_NewsFeed">#e8edf3</color>
+    <color name="white_NewsFeed">#FFFFFF</color>
+    <!-- Fin : Color of News Feed -->
+
+
 </resources>

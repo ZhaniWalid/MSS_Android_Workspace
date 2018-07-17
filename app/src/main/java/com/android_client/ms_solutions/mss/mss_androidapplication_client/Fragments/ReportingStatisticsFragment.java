@@ -113,11 +113,13 @@ public class ReportingStatisticsFragment extends Fragment implements AdapterView
         return view;
     }
 
+    /*
     @Override
     public void setHasOptionsMenu(boolean hasMenu) {
         setHasOptionsMenu(true);
         super.setHasOptionsMenu(hasMenu);
     }
+    */
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

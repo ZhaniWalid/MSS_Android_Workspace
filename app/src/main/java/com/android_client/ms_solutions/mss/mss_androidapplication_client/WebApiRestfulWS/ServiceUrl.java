@@ -7,7 +7,7 @@ package com.android_client.ms_solutions.mss.mss_androidapplication_client.WebApi
 public class ServiceUrl {
 
     //public static final String REST_SERVICE_URL ="http://localhost:11520/";192.168.1.91
-    public static final String REST_SERVICE_URL ="http://192.168.1.101:83/MSS_AspDotNetToAndroid_WebApi_WS/"; // 192.168.1.105
+    public static final String REST_SERVICE_URL ="http://192.168.1.93:83/MSS_AspDotNetToAndroid_WebApi_WS/"; // 192.168.1.105
     //public static final String REST_SERVICE_URL ="http://10.0.2.2:83/MSS_AspDotNetToAndroid_WebApi_WS/";
     public static final String REST_SERVICE_API = REST_SERVICE_URL+ "api/";
     public static final String REGISTER = REST_SERVICE_API + "Account/Register";

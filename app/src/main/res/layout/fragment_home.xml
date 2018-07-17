@@ -1,8 +1,11 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.HomeFragment">
+    tools:context=".Fragments.HomeFragment"
+    android:id="@+id/frag_home"
+    android:background="@color/bg_color_NewsFeed">
 
     <TextView
         android:id="@+id/section_label"
@@ -10,12 +13,20 @@
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
+<!--
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
         android:alpha="0.3"
-        android:src="@drawable/ic_home_black_24dp_v21" />
+        app:srcCompat="@drawable/ic_home_black_24dp_v21"
+        android:contentDescription="TOD" />
+    -->
+
+    <com.mindorks.placeholderview.ExpandablePlaceHolderView
+        android:id="@+id/expandableView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"/>
 
 </FrameLayout>

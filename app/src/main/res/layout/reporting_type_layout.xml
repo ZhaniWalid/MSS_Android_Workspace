@@ -8,16 +8,28 @@
     android:paddingBottom="10dp"
     android:paddingTop="10dp">
 
+    <LinearLayout
+        android:id="@+id/infoSection_ReportingTypes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
     <TextView
         android:id="@+id/txtView_ReportingTypeName"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="70dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:background="@color/colorAccent"
         android:text="@string/reporting_type_name"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textAlignment="viewStart"
+        android:textStyle="italic"
+        android:textDirection="firstStrong"
+        android:textColorHighlight="@color/orange"/>
 
+    </LinearLayout>
 
 </RelativeLayout>

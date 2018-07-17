@@ -1,5 +1,6 @@
 package com.android_client.ms_solutions.mss.mss_androidapplication_client.Fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -21,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Adapters.GeneralTransactionsDataAdapter;
@@ -69,6 +71,7 @@ public class TransactionsFragment extends Fragment {
     SampleApi api = SampleApiFactory.getInstance();
 
     private EditText editText_SearchTransactions;
+    private TextView textView_TotalTransations;
 
     List<gw_trnsct_GeneralBindingModel> List_valuesGeneralTransactionsData; // used for boath ListView and RecyclerView
     List<gw_trnsct_GeneralBindingModel> List_valuesGeneralTransactionsData_ForFiltring; // Used for filtring in RecyclerView
@@ -132,6 +135,7 @@ public class TransactionsFragment extends Fragment {
 
         listView_GeneralTransactionsData = view.findViewById(R.id.ListView_transactionsGeneralData); // sa marche
         editText_SearchTransactions = view.findViewById(R.id.editText_search_transactions);
+        textView_TotalTransations = view.findViewById(R.id.txtView_totalSizeOfTransactions);
 
         //List_TransactionsData = new ArrayList<>();
         List_valuesGeneralTransactionsData_ForFiltring = new ArrayList<>();
@@ -157,11 +161,13 @@ public class TransactionsFragment extends Fragment {
         return view;
     }
 
+    /*
     @Override
     public void setHasOptionsMenu(boolean hasMenu) {
         setHasOptionsMenu(true);
         super.setHasOptionsMenu(hasMenu);
     }
+    */
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -305,6 +311,7 @@ public class TransactionsFragment extends Fragment {
             return null;
         }
 
+        @SuppressLint("SetTextI18n")
         @Override
         protected void onPostExecute(String s) {
 
@@ -314,7 +321,9 @@ public class TransactionsFragment extends Fragment {
             listViewTransactionsDataAdapter = new ListViewTransactionsDataAdapter(TransactionsFragment.this.getContext(),List_valuesGeneralTransactionsData);
             listView_GeneralTransactionsData.setAdapter(listViewTransactionsDataAdapter);
 
-             FilterTransactionsData();
+            textView_TotalTransations.setText("Total Transactions : "+List_valuesGeneralTransactionsData.size());
+
+            FilterTransactionsData();
             //listTransactions_Size = List_valuesGeneralTransactionsData.size();
             super.onPostExecute(s);
         }

@@ -1,5 +1,6 @@
 package com.android_client.ms_solutions.mss.mss_androidapplication_client.Fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.Uri;
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Adapters.ListViewUsersMerchantsAdapter;
@@ -85,6 +87,8 @@ public class UserManagementFragment extends Fragment {
     private String strongPassword = "Strong Password",mediumPassword = "Medium Password",weakPassword = "Weak Password";
     private String resultCreationUsrMrch = " ";
 
+    private TextView textView_TotalUsers;
+
     public UserManagementFragment() {
         // Required empty public constructor
     }
@@ -124,6 +128,7 @@ public class UserManagementFragment extends Fragment {
 
         ListView_UsersMerchants = view.findViewById(R.id.ListView_usersMerchants);
         editText_SearchUsersMerchants = view.findViewById(R.id.editText_search_usersMerchants);
+        textView_TotalUsers = view.findViewById(R.id.txtView_totalSizeOfUsers);
 
         fab_createUserMerchant = view.findViewById(R.id.fab_createUserMerchant);
 
@@ -159,11 +164,13 @@ public class UserManagementFragment extends Fragment {
 //        }
     }
 
+    /*
     @Override
     public void setHasOptionsMenu(boolean hasMenu) {
         setHasOptionsMenu(true);
         super.setHasOptionsMenu(hasMenu);
     }
+    */
 
     @Override
     public void onDetach() {
@@ -492,11 +499,14 @@ public class UserManagementFragment extends Fragment {
             return null;
         }
 
+        @SuppressLint("SetTextI18n")
         @Override
         protected void onPostExecute(String s) {
 
             listViewUsersMerchantsAdapter = new ListViewUsersMerchantsAdapter(UserManagementFragment.this.getContext(),List_UserMerchants);
             ListView_UsersMerchants.setAdapter(listViewUsersMerchantsAdapter);
+
+            textView_TotalUsers.setText("Total Users : "+List_UserMerchants.size());
 
             FilterUsersMerchantsData();
 

@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
 import android.text.Spanned;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -30,24 +31,26 @@ import com.android_client.ms_solutions.mss.mss_androidapplication_client.Fragmen
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Fragments.SettingsFragment;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Fragments.SettingsScrollViewFragment;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Fragments.TransactionsFragment;
+import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.MessageBindingModel;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.WebApiRestfulWS.SampleApi;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.WebApiRestfulWS.SampleApiFactory;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public String accessToken;
-    public SampleApi api = SampleApiFactory.getInstance();
+    private static SampleApi api = SampleApiFactory.getInstance();
     public String welcomeUser,goodByUser;
     public String [] welcomeUsr;
 
     //public ImageView imgView_FragmentProfileUsr;
     public NavigationView navigationView;
-    public FloatingActionButton fab;
+    //public FloatingActionButton fab;
     public DrawerLayout drawer;
     public View navHeader;
     public ImageView imgProfile;
@@ -89,6 +92,9 @@ public class HomeActivity extends AppCompatActivity
     private boolean shouldLoadHomeFragOnBackPress = true;
     private Handler mHandler;
 
+    public static String  TitleNotifMerchant = "",MsgNotifMerchant = "",priorityMerchant= "";
+    public static boolean  isContentJsonAvailable_Merchant;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,14 +103,14 @@ public class HomeActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -131,7 +137,8 @@ public class HomeActivity extends AppCompatActivity
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         if(bundle!=null){
-            accessToken = (String) bundle.get("AccessToken");
+            accessToken = (String) bundle.get("AccessTokenMerchant");
+            Log.e("TokenLog","Access Token MERCHANT : "+ accessToken);
             //txtViewUsrName.setText(accessToken);
         }
 
@@ -143,6 +150,57 @@ public class HomeActivity extends AppCompatActivity
 
         // initializing navigation menu
         //setUpNavigationView();
+
+        GetJsonNotifOfRejectedTransFirebaseMerchant();
+        // If a notification message is tapped, any data accompanying the notification
+        // message is available in the intent extras. In this project the launcher
+        // intent is fired when the notification is tapped, so any accompanying data would
+        // be handled here. If you want a different intent fired, set the click_action
+        // field of the notification message to the desired intent. The launcher intent
+        // is used when no click_action is specified.
+        //
+        // Handle possible data accompanying notification message.
+        Bundle bundle2 = getIntent().getExtras();
+        if (bundle2 != null) {
+            for (String key : bundle2.keySet()) {
+                //String value = bundle1.getString(key);
+                ///boolean isContentAvailable = (boolean) bundle1.get("ContentAvaible");
+                boolean isContentAvailableMrc = bundle2.getBoolean("contentAv");
+
+                if (key.equals("contentAv")) {
+                    if (isContentAvailableMrc) {
+                        Log.e("ContentAvailable Merch", String.valueOf(true));
+                        System.err.println("Bundle Get Intent Notification Content Available Merchant is : " + true);
+                        //  Intent intent2 = new Intent(this, AnotherActivity.class);
+                        //  intent.putExtra("value", value);
+                        // startActivity(intent);
+                        //  finish();
+                        //NotificationsFragment notificationsFragment = new NotificationsFragment();
+                        //goToFragment(notificationsFragment);
+                    }
+                }
+            }
+        }
+        /*if (bundle2 != null) {
+
+            for (String key : bundle2.keySet()) {
+                String Priority = bundle2.getString("priority");
+                ///boolean isContentAvailable = (boolean) bundle1.get("ContentAvaible");
+                //boolean isContentAvailable = bundle1.getBoolean("ContentAvaible");
+
+                if (key.equals("priority")) {
+                    if (Priority != null && Priority.equals("high")) {
+                        Log.e("Priority", Priority);
+                        System.err.println("Bundle Get Intent Notification Priority is : " + Priority);
+                        //  Intent intent2 = new Intent(this, AnotherActivity.class);
+                        //  intent.putExtra("value", value);
+                        // startActivity(intent);
+                        //  finish();
+                    }
+                }
+            }
+        }*/
+
 
         if (savedInstanceState == null) {
             navItemIndex = 0;
@@ -355,12 +413,12 @@ public class HomeActivity extends AppCompatActivity
     }
 
     // show or hide the fab
-    private void toggleFab() {
+    /*private void toggleFab() {
         if (navItemIndex == 0)
             fab.show();
         else
             fab.hide();
-    }
+    }*/
 
        private void setToolbarTitle() {
         getSupportActionBar().setTitle(activityTitles[navItemIndex]);
@@ -416,7 +474,7 @@ public class HomeActivity extends AppCompatActivity
             drawer.closeDrawers();
 
             // show or hide the fab button
-            toggleFab();
+            //toggleFab();
             return;
         }
 
@@ -443,7 +501,7 @@ public class HomeActivity extends AppCompatActivity
         }
 
         // show or hide the fab button
-        toggleFab();
+        //toggleFab();
 
         //Closing drawer on item click
         drawer.closeDrawers();
@@ -514,6 +572,82 @@ public class HomeActivity extends AppCompatActivity
             super.onPostExecute(s);
         }
     }
+
+    public static MessageBindingModel messageBindingModel;
+
+    public static void GetJsonNotifOfRejectedTransFirebaseMerchant(){
+        new NotificationOfRejectedTransactionsFirebaseTask().execute();
+    }
+
+    //class AsyncTask
+    //class NotificationOfRejectedTransactionsFirebaseTask
+    public static class NotificationOfRejectedTransactionsFirebaseTask extends AsyncTask <String,String,MessageBindingModel>{
+
+        @Override
+        protected MessageBindingModel doInBackground(String... strings) {
+
+            try {
+                //messageBindingModel = api.GetNotificationOfRejectedTransactionsFirebase().execute().body();
+                messageBindingModel = api.PostNotifRejectedTranscFromFireBaseCloud().execute().body();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+            /*
+            try {
+                remoteMessageServiceRassZebi = api.fireBaseRassZebi().execute().body();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            */
+
+            return messageBindingModel;
+        }
+
+        //@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+        @Override
+        protected void onPostExecute(MessageBindingModel messageBindingModel) {
+
+            if (messageBindingModel != null){
+
+                MsgNotifMerchant = messageBindingModel.getNotificationData().getMessage();
+                TitleNotifMerchant = messageBindingModel.getNotificationData().getTitle();
+                isContentJsonAvailable_Merchant = messageBindingModel.isContent_available();
+                //priorityMerchant = messageBindingModel.getPriority();
+            }else{
+                Log.e("Firebase Json Merch Res","No Notification Data to get to messageBindingModel");
+            }
+            //sendNotification_2(messageBindingModel.getNotificationData().getTitle(),messageBindingModel.getNotificationData().getMessage());
+            super.onPostExecute(messageBindingModel);
+        }
+
+        /*
+        @Override
+        protected void onPostExecute(String string) {
+
+            String jsonTitle   = messageBindingModel.getNotificationData().getTitle();
+            String jsonMessage = messageBindingModel.getNotificationData().getMessage();
+
+
+            Map m = new HashMap();
+            m.put("title",jsonTitle);
+            m.put("message",jsonMessage);
+            remoteMessageService.getData().entrySet().add();
+
+
+            if( messageBindingModel != null){
+                //sendNotification(jsonTitle,jsonMessage);
+                    //remoteMessageServiceRassZebi.getData();
+                System.err.println("No Errors ZEBI");
+            }else{
+                System.err.println("There is no notification to send ZEBI");
+            }
+
+            super.onPostExecute(string);
+        } */
+    }
+
 
     /// Fin : Parties des : Classes AsyncTask
 }

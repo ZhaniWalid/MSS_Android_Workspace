@@ -1,14 +1,29 @@
 package com.android_client.ms_solutions.mss.mss_androidapplication_client.Fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android_client.ms_solutions.mss.mss_androidapplication_client.Adapters.RejectedTransactionNotificationListAdapter;
+import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.gw_StatusCodeBindingModel;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.R;
+import com.android_client.ms_solutions.mss.mss_androidapplication_client.WebApiRestfulWS.SampleApi;
+import com.android_client.ms_solutions.mss.mss_androidapplication_client.WebApiRestfulWS.SampleApiFactory;
+
+import java.io.IOException;
+import java.util.List;
 
 
 /**
@@ -30,6 +45,23 @@ public class NotificationsFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    SampleApi api = SampleApiFactory.getInstance();
+
+    private EditText editText_SearchRejectedTransactions_Notif;
+    private TextView textView_TotalRejTrans;
+
+    List<gw_StatusCodeBindingModel> List_valuesRejectedTransNotif; // used for boath ListView and RecyclerView
+    //List<gw_trnsct_GeneralBindingModel> List_valuesGeneralTransactionsData_ForFiltring; // Used for filtring in RecyclerView
+
+    //private int size_listTrnscExtended = 0;
+
+    //ArrayAdapter<gw_trnsct_GeneralBindingModel> adapter = null; // used for ListView
+    public static ListView listView_RejectedTransNotif; // used for ListView
+    RejectedTransactionNotificationListAdapter Adapter_RejectedTransactionNotificationList;
+
+    int textlength = 0;
+
 
     public NotificationsFragment() {
         // Required empty public constructor
@@ -66,7 +98,24 @@ public class NotificationsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notifications, container, false);
+        View view = inflater.inflate(R.layout.fragment_notifications, container, false);
+
+        listView_RejectedTransNotif = view.findViewById(R.id.ListView_rejectedTransactionsNotif);
+        editText_SearchRejectedTransactions_Notif = view.findViewById(R.id.editText_search_rejectedTransactionsNotif);
+        textView_TotalRejTrans = view.findViewById(R.id.txtView_totalSizeOfNotications);
+
+        GetRejectedTransactionNotificationValues();
+
+       /* listView_RejectedTransNotif.setLongClickable(true); // in the listView in the XML Layout we should add also: android:longClickable="true"
+        listView_RejectedTransNotif.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Toast.makeText(NotificationsFragment.this.getContext(),"No Extra Information Yet For : "+position,Toast.LENGTH_LONG).show();
+                return true;
+            }
+        });*/
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -106,5 +155,38 @@ public class NotificationsFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+
+    private void GetRejectedTransactionNotificationValues(){
+        new RejectedTransactionNotificationTask().execute();
+    }
+
+    //// Début : Parties des : Classes AsyncTask
+    /// Class : RejectedTransactionNotificationTask
+    class RejectedTransactionNotificationTask extends AsyncTask<String, String, String>{
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            try {
+                List_valuesRejectedTransNotif = api.GetOnlyRejectedStatusCodeWithDesc().execute().body();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @SuppressLint("SetTextI18n")
+        @Override
+        protected void onPostExecute(String string) {
+
+            Adapter_RejectedTransactionNotificationList = new RejectedTransactionNotificationListAdapter(NotificationsFragment.this.getContext(),List_valuesRejectedTransNotif);
+            listView_RejectedTransNotif.setAdapter(Adapter_RejectedTransactionNotificationList);
+
+            textView_TotalRejTrans.setText("Total Rejected Transactions : "+List_valuesRejectedTransNotif.size());
+
+            super.onPostExecute(string);
+        }
     }
 }

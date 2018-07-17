@@ -7,6 +7,7 @@
     android:id="@+id/fragmentReportsContainer">
 
     <RelativeLayout
+        android:id="@+id/relative_layout_ReportingStat"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:ignore="UselessParent"
@@ -46,10 +47,13 @@
     -->
 
     <ListView
+        android:id="@+id/ListView_reporting"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/ListView_reporting"
-        android:paddingTop="20dp" />
+        android:paddingTop="5dp"
+        android:divider="@color/red"
+        android:dividerHeight="1dp"
+        android:listSelector="@color/five"/>
 
     </RelativeLayout>
 

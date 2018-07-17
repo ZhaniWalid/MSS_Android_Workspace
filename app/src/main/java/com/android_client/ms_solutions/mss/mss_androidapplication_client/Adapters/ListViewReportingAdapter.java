@@ -65,7 +65,7 @@ public class ListViewReportingAdapter extends BaseAdapter {
             holder = (ViewReportingHolder) view.getTag();
         }
 
-        holder.textViewReportingType.setText(listReportingTypeNames.get(position).toString());
+        holder.textViewReportingType.setText(listReportingTypeNames.get(position));
         return view;
     }
 }

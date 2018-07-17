@@ -36,12 +36,28 @@
             android:singleLine="true"
             tools:ignore="RtlHardcoded" />
 
-    <ListView
+        <TextView
+            android:id="@+id/txtView_totalSizeOfUsers"
+            android:layout_below="@+id/editText_search_usersMerchants"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:textColor="@color/orange"
+            android:textColorHighlight="@color/black"
+            android:textStyle="bold"/>
+
+        <!-- android:hint="@string/list_view_size_of_total_result" -->
+
+        <ListView
         android:id="@+id/ListView_usersMerchants"
+        android:layout_below="@+id/txtView_totalSizeOfUsers"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/editText_search_usersMerchants"
-        android:paddingTop="20dp"/>
+        android:paddingTop="20dp"
+        android:divider="@color/red"
+        android:dividerHeight="1dp"
+        android:listSelector="@color/five"/>
 
       <android.support.constraint.ConstraintLayout
           android:layout_width="match_parent"

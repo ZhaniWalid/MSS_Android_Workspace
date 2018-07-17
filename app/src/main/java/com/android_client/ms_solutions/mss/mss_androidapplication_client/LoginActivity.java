@@ -4,12 +4,14 @@ package com.android_client.ms_solutions.mss.mss_androidapplication_client;
  * Created by Walid Zhani @Walid.Zhy7 on 21/03/2018.
  */
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
@@ -24,9 +26,11 @@ import com.android_client.ms_solutions.mss.mss_androidapplication_client.Classes
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.DialogBoxes.AlertMessageBox;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.RegisterBindingModel;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.TokenModel;
+import com.android_client.ms_solutions.mss.mss_androidapplication_client.NotificationsPushFirebase.MyFirebaseInstanceIDService;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Utils.StringUtil;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.WebApiRestfulWS.SampleApi;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.WebApiRestfulWS.SampleApiFactory;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -36,6 +40,7 @@ import org.androidannotations.annotations.ViewById;
 import java.io.IOException;
 
 import butterknife.BindView;
+
 
 @EActivity(R.layout.activity_login)
 public class LoginActivity extends AppCompatActivity {
@@ -79,6 +84,17 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Get The Device Id Of Android Smartphone or Emulator
+        @SuppressLint("HardwareIds")
+        String myDeviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+        System.err.println("Walid , Your Device ID Is : "+myDeviceId);
+
+        String token = FirebaseInstanceId.getInstance().getToken();
+        System.err.println("Walid , Your FCM ( Firebase Token ) is : "+ token); // Firebase token id
+        //Log.d(TAG, "Token: " + token);
+
+        // and print it to the Console , to use it into the Push Notifications with .Net + Firebase
 
         // Intent From Home Activity to Login Activity
         // Intent intent = getIntent();
@@ -699,7 +715,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                  }else { // 0 => Débloquer User Merchant
                                      Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                                     intent.putExtra("AccessToken", result.getAccessToken());
+                                     intent.putExtra("AccessTokenMerchant", result.getAccessToken());
                                      //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                      //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                      startActivity(intent);

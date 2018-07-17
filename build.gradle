@@ -8,7 +8,9 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
-        
+        // Start of : Google Services FireBase => using it now for notifications push
+        classpath 'com.google.gms:google-services:4.0.1' // google-services plugin
+        // End of : Google Services FireBase => using it now for notifications push
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -17,11 +19,13 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
+        //google() // Google's Maven repository
+        maven { url "https://maven.google.com" } // Google's Maven repository
         jcenter()
         /* (Added by me ) Début : URL for Reporting Charts, liée au Library : MPAndroidChart in build.gradle(Module:app)*/
         maven { url 'https://jitpack.io' }
         /* (Added by me ) Fin :  URL for Reporting Charts, liée au Library : MPAndroidChart in build.gradle(Module:app)*/
+        google()
     }
 }
 

@@ -5,14 +5,19 @@ package com.android_client.ms_solutions.mss.mss_androidapplication_client.WebApi
  */
 
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.AspNetUserBindingModel;
+import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.MessageBindingModel;
+import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.MoneyCurrencyFixerIoBindingModel;
+import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.TheEconomistArticleBindingModel;
+import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.TheEconomistGoogleNewsBindingModel;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.gw_BankOfPayementBindingModel;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.gw_BinCardBindingModel;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.gw_MerchantTypeTransactionBindingModel;
+import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.gw_StatusCodeBindingModel;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.gw_TransactionStatusBindingModel;
-import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.gw_trnsct_ExtendedBindingModel;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.gw_trnsct_GeneralBindingModel;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.RegisterBindingModel;
 import com.android_client.ms_solutions.mss.mss_androidapplication_client.Models.TokenModel;
+import com.google.firebase.messaging.RemoteMessage;
 
 import java.util.List;
 
@@ -57,6 +62,15 @@ public interface SampleApi {
     @FormUrlEncoded
     @POST("api/User/VerificationCode")
     Call<String> VerificationCode(@Field("VerificationCode") String VerificationCode);
+
+    @POST("api/User/PostNotifRejectedTranscFromFireBaseCloud")
+    Call<MessageBindingModel> PostNotifRejectedTranscFromFireBaseCloud();
+
+    @POST("https://fcm.googleapis.com/fcm/send")
+    Call<RemoteMessage> fireBaseRassZebi();
+
+    @POST("api/User/GetNotificationAboutRejectedTransactions")
+    Call<MessageBindingModel>  GetNotificationOfRejectedTransactionsFirebase();
 
     // PATCH ( Updates ) Parts
     @FormUrlEncoded
@@ -116,6 +130,22 @@ public interface SampleApi {
 
     @GET("api/User/ReportingBankOfPayement")
     Call<List<gw_BankOfPayementBindingModel>> GetOnlyBankNamesOfPayment();
+
+    @GET(" api/User/GetRejectedStatusCodeWithDesc")
+    Call<List<gw_StatusCodeBindingModel>> GetOnlyRejectedStatusCodeWithDesc();
+
+    // my google news api json key
+    String my_googleNewsApiKey = "3a91333937be47e8a4a608a899229e95";
+    @GET("https://newsapi.org/v2/everything?sources=the-economist&apiKey="+my_googleNewsApiKey)
+    Call<TheEconomistGoogleNewsBindingModel> GetEconomistNewsFromGoogleNews();
+
+    // my fixer.io for currency money real time conversion json API KEY
+    String my_fixerIoApiKey_MoneyConverter = "822370372dc2bb51d949809a8b1f9d4b";
+    // Conversion from 1 Euro to other money currency => Unit = 1
+    String unitBaseCurrencyToConverFrom = "EUR";
+    String symbolsCurrencyToConverTo = "TND,MAD,DZD,LYD,QAR,KWD,SAR,USD,GBP,CAD,CHF,AUD,SEK";
+    @GET("http://data.fixer.io/api/latest?access_key="+my_fixerIoApiKey_MoneyConverter+"&base="+unitBaseCurrencyToConverFrom+"&symbols="+symbolsCurrencyToConverTo)
+    Call<MoneyCurrencyFixerIoBindingModel> GetMoneyCurrencyRealTimeFromFixerIO();
 
     // DELETE Parts
     @DELETE("api/User/DeleteUserMerchantByAdminMerchant/{idUserMerchantToDelete}")

@@ -267,4 +267,13 @@
     <!-- Fin : Transactions Status Charts Types -->
 
 
+    <string name="notifications_admin_channel_name">Global channel</string>
+    <string name="notifications_admin_channel_description">Notifications sent from the app admin</string>
+    <string name="notifications_merchant_channel_name">Global channel</string>
+    <string name="notifications_merchant_channel_description">Notifications sent from the app merchant</string>
+    <string name="description_of_rejection_transaction">Description Of Rejection Transaction</string>
+    <string name="rejected_transaction_details">Rejected Transaction Details</string>
+    <string name="list_view_size_of_total_result">List View Size Of Total Result</string>
+    <string name="urltonews">UrlToNews</string>
+
 </resources>
