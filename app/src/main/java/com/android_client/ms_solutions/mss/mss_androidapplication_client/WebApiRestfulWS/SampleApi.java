@@ -135,12 +135,12 @@ public interface SampleApi {
     Call<List<gw_StatusCodeBindingModel>> GetOnlyRejectedStatusCodeWithDesc();
 
     // my google news api json key
-    String my_googleNewsApiKey = "3a91333937be47e8a4a608a899229e95";
+    String my_googleNewsApiKey = "###########";
     @GET("https://newsapi.org/v2/everything?sources=the-economist&apiKey="+my_googleNewsApiKey)
     Call<TheEconomistGoogleNewsBindingModel> GetEconomistNewsFromGoogleNews();
 
     // my fixer.io for currency money real time conversion json API KEY
-    String my_fixerIoApiKey_MoneyConverter = "822370372dc2bb51d949809a8b1f9d4b";
+    String my_fixerIoApiKey_MoneyConverter = "###########";
     // Conversion from 1 Euro to other money currency => Unit = 1
     String unitBaseCurrencyToConverFrom = "EUR";
     String symbolsCurrencyToConverTo = "TND,MAD,DZD,LYD,QAR,KWD,SAR,USD,GBP,CAD,CHF,AUD,SEK";
